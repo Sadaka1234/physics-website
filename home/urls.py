@@ -3,4 +3,5 @@ from home.views import *
 
 urlpatterns = [
   url(r"^$",main),
+  url(r"^submenu/$", submenu),
 ]
