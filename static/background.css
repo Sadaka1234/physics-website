@@ -1,0 +1,8 @@
+.body1 {
+  background-image: url("../media/background.jpg");
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-attachment: scroll;
+  background-repeat: repeat;
+}
+
