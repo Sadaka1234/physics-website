@@ -4,15 +4,31 @@
 <head>
 	<title>Taller de Proyectos Web</title>
 	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'estilo.css' %}">
 </head>
 <body style="background-color: #eaeaea">
    {% block contenido %}
 	<br>
-	<center><h1 style="color:#428bca" > Primer Hola mundo personalizado de su Proyecto Web<h1></center><br>
-   {%  endblock %}
-	<center><h2 > ¡¡¡¡Felicitacionesss!!!</h2></center>
+  <div>
+    <div class="row">
+      <div class="col-md-6">
+        <center><h1>PERZONALIXANDO MI PROYECTO EQUISDE</h1></center>
+      </div>
+      <div>
+        <center><h1>EQUISDEE DOY LAS FELICITACIONES!!</h1></center>
+      </div>
+    </div>
+     <div class="row">
+        <div class="col-md-12">
+          <center><img src="/media/imagen.jpg" width="450px"></center>
+        </div>
+     </div>
+  {%  endblock %}
 
+
+    </div>
+  </div>
 
 
 </body>
