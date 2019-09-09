@@ -11,3 +11,7 @@ python manage.py runserver <- Corre en puerto 8000
 ## Agregar apps:
 
 py manage.py startapp <nombre_app>
+
+## instalar bootstrap
+
+pip install bootstrap4
