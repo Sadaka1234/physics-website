@@ -16,4 +16,4 @@ py manage.py startapp <nombre_app>
 
 ### instalar bootstrap en caso de que no lo haya instalado en el env
 
-pip install bootstrap4
+pip install django-bootstrap4
