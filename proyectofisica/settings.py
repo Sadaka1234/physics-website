@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'home',
     'contenido',
-  'preguntas'
+    'preguntas'
 ]
 
 MIDDLEWARE = [

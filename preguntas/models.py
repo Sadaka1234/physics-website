@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Archivo(models.Model):
+class Ejercicio(models.Model):
   ruta = models.CharField(blank=False, null=False, max_length=255)
   dificultad = models.IntegerField(blank=False, null=False)
   materia = models.ForeignKey('contenido.Materia',on_delete=models.CASCADE)
