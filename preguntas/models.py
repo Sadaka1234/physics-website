@@ -7,3 +7,5 @@ class Ejercicio(models.Model):
   materia = models.ForeignKey('contenido.Materia',on_delete=models.CASCADE)
   semestre = models.IntegerField(blank=True, null=False)
   anio = models.IntegerField(blank=True, null=False)
+  def __str__(self):
+    return u'%s' % self.ruta

@@ -9,3 +9,6 @@ def main(request):
 
 def idem(request):
     return render(request, 'idem.html', context)
+
+def login(request):
+  return render(request, 'login.html', context)
