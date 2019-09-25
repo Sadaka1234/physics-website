@@ -21,5 +21,15 @@
 ###Actualizar los cambios en los modelos de datos
 
 `pyhton3 manage.py makemigrations`
-
 `python3 manage.py migrate`
+
+### Integrantes:
+
+Gonzalo Durán Sáez 201473507-3
+Jorge Galleguillos 201473545-6
+
+### Nombre proyecto:
+
+Physic-Storm
+
+Nos adelantamos a nuestra era, y instalamos bootstrap para crear un navbar, asi que en caso de no compilar, por favor ejecutar: pip install django-bootstrap4

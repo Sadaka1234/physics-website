@@ -4,4 +4,5 @@ from home.views import *
 urlpatterns = [
   url(r"^$",main,name="main"),
   url(r"^idem/$", idem, name="idem"),
+  url(r"^login/$", login, name="login")
 ]
