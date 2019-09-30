@@ -38,6 +38,22 @@
             </li>
           </ul>
         </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" style="color: aliceblue">
+                {% if user.is_authenticated %}
+                  <p>{{ user.get_username }}</p>
+                {% endif %}
+            </li>
+            <li class="nav-item">
+                <form method="POST" role="form" action=".">
+                  <input type="hidden" value="logout" name="cerrar">
+                  {% csrf_token %}
+                  <button class="btn btn-info waves-effect waves-light" type="submit">Cerrar Sesión</button>
+                </form>
+            </li>
+          </ul>
+        </div>
       </nav>
 
      {% block contenido %}
@@ -48,8 +64,6 @@
           <center><h1>Visitaste esta página el: {{ hora }}</h1></center>
         </div>
       </div>
-
-
   {% bootstrap_javascript jquery='full' %}
 </body>
 </html>

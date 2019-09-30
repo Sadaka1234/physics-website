@@ -6,12 +6,23 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 context = dict()
-context["hora"]=datetime.datetime.now()
-def main(request):
-    return render(request, 'main.html', context)
+context["hora"] = datetime.datetime.now()
 
+@login_required(login_url='login')
+def main(request):
+  if "cerrar" in request.POST.keys():
+    auth.logout(request)
+    return redirect("login")
+  return render(request, 'main.html', context)
+
+
+@login_required(login_url='login')
 def idem(request):
-    return render(request, 'idem.html', context)
+  if "cerrar" in request.POST.keys():
+    auth.logout(request)
+    return redirect("login")
+  return render(request, 'idem.html', context)
+
 
 def login(request):
   if request.method == 'POST':
@@ -21,10 +32,6 @@ def login(request):
         auth.login(request, user)
         return redirect("main")
       else:
-        context["error"]="Revisar usuario o contraseña"
+        context["error"] = "Revisar usuario o contraseña"
         return render(request, 'login.html', context)
   return render(request, "login.html", context)
-
-@login_required(login_url='')
-def vista_logueado(request):
-  return render(request, "main.html", context)
