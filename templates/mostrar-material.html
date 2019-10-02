@@ -1,0 +1,15 @@
+{%  extends 'base.html' %}
+{% block contenido %}
+  <div class="d-flex justify-content-center h-100">
+    <p style="font-size: larger"> Preguntas encontradas para tópico principal: {{ materia }} y tópico secundario: {{ submateria }} </p>
+  </div>
+  <div>
+    <p>Preguntas de certamen encontradas:</p>
+      <ul>
+          {% for pregunta in preguntas %}
+            <li><a href="#">{{ pregunta }}</a></li>
+          {% endfor %}
+      </ul>
+  </div>
+
+{% endblock %}

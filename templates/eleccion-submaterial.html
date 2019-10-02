@@ -1,0 +1,33 @@
+{%  extends 'base.html' %}
+{% block contenido %}
+  <center><h2> Se ha elegido el tópico: {{ materia }}</h2></center>
+  <center><h3> Elegir un subtópico: </h3></center>
+  <div class="d-flex justify-content-center h-100">
+    <form method="post" id="form-submateria">
+        <p>
+            <select name="submateria" id='submateria' class="mdb-select md-form" >
+                <option value=" " disabled selected>Elegir Subtópico</option>
+                {% for submateria in submaterias %}
+                    <option value="{{ submateria.subtopico }}">{{ submateria.subtopico }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>{% csrf_token %}<button type="submit" class="btn btn-dark" style="background-color: #13112c" name="input-aceptado1" id="input-aceptado1" disabled>Elegir Submateria</button></p>
+    </form>
+    <p hidden id="output"> {{ mensaje }}</p>
+    <script>
+
+        $( document ).ready(function() {
+
+            $('#submateria').on('change', function() {
+                if(this.value === " ")
+                    $('#input-aceptado1').attr("disabled", true);
+                else
+                    $('#input-aceptado1').attr("disabled", false);
+            });
+        });
+
+    </script>
+  </div>
+
+{% endblock %}

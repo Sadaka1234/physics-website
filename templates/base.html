@@ -47,14 +47,14 @@
             <h3 class="dropdown-header" style="font-size: larger">Cuenta</h3>
             <a class="dropdown-item" href="#"> Información </a>
             <a class="dropdown-item" href="#"> Estadisticas </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" type="button">
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item">
                  <form method="POST" role="form" action=".">
                     <input type="hidden" value="logout" name="cerrar">
                      {% csrf_token %}
-                   <button class="btn btn-primary" value="logout" type="submit">Cerrar Sesión</button>
+                   <button class="btn btn-primary" style="background-color: #6b79bd" value="logout" type="submit">Cerrar Sesión</button>
                   </form>
-               </a>
+            </a>
           </div>
         </div>
       </nav>

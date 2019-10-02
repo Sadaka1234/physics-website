@@ -1,0 +1,30 @@
+{%  extends 'base.html' %}
+{% block contenido %}
+  <center><h2> Elegir un tópico: </h2></center>>
+  <div class="d-flex justify-content-center h-100">
+    <form method="post">
+        <p>
+            <select id='materia' name="materia" class="mdb-select md-form">
+                <option value=" " disabled selected>Elegir Tópico</option>
+                {% for materia in materias %}
+                    <option value="{{ materia.topico }}">{{ materia.topico }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>{% csrf_token %}<button type="submit" class="btn btn-dark" style="background-color: #13112c" id="input-aceptado" disabled>Elegir Materia</button></p>
+    </form>
+    <script>
+        $( document ).ready(function() {
+            $('#materia').on('change', function() {
+                if(this.value === " ") {
+                    $('#input-aceptado').attr("disabled", true);
+                    }
+                else {
+                    $('#input-aceptado').attr("disabled", false);
+                    }
+            });
+        });
+    </script>
+  </div>
+
+{% endblock %}
