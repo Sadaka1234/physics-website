@@ -1,15 +1,55 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block estilos %}
+  <link rel="stylesheet" type="text/css" href="{% static 'material-form.css' %}">
+{% endblock %}
+
 {% block contenido %}
-  <div class="d-flex justify-content-center h-100">
-    <p style="font-size: larger"> Preguntas encontradas para tópico principal: {{ materia }} y tópico secundario: {{ submateria }} </p>
-  </div>
-  <div>
-    <p>Preguntas de certamen encontradas:</p>
-      <ul>
-          {% for pregunta in preguntas %}
-            <li><a href="#">{{ pregunta }}</a></li>
+  <div class="container">
+  <div class="row">
+    <div class="card col-md-3" style="margin:50px 0">
+      <div class="card-header">Tópicos elegidos:</div>
+      <ul class="list-group list-group-flush">
+          {% for mat in materia %}
+            <li class="list-group-item">{{ mat }}</li>
           {% endfor %}
       </ul>
+    </div>
+    <div class="col-md-3">
+      <div class="card" style="margin:50px 0">
+        <div class="card-header">Subtópicos elegidos:</div>
+          <ul class="list-group list-group-flush">
+              {% for submateria in submaterias %}
+                <li class="list-group-item">
+                    {{ submateria.subtopico }}
+                </li>
+              {% endfor %}
+          </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6" style="margin:50px 0">
+        <div>
+          <p>Material de estudio encontrado:</p>
+          <ul>
+              {% for pregunta in preguntas %}
+                <li><a href="#">{{ pregunta.ruta }}</a></li>
+              {% endfor %}
+          </ul>
+        </div>
+    </div>
+    <div class="col-md-6" style="margin:50px 0">
+        <div>
+          <p>Preguntas de certamen encontradas:</p>
+          <ul>
+              {% for pregunta in preguntas %}
+                <li><a href="#">{{ pregunta.ruta }}</a></li>
+              {% endfor %}
+          </ul>
+        </div>
+    </div>
+  </div>
   </div>
 
 {% endblock %}

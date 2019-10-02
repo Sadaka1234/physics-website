@@ -9,6 +9,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   {% load bootstrap4 %}
   {% bootstrap_css %}
+  {% block estilos %}
+  {% endblock %}
 </head>
 <body class="body1">
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1f1c71; font-size: larger">
@@ -67,4 +69,6 @@
       </div>
   {% bootstrap_javascript jquery='full' %}
 </body>
+{% block latex-scripts %}
+{% endblock %}
 </html>

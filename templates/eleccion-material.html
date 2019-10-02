@@ -1,27 +1,48 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block estilos %}
+  <link rel="stylesheet" type="text/css" href="{% static 'material-form.css' %}">
+{% endblock %}
+
 {% block contenido %}
-  <center><h2> Elegir un tópico: </h2></center>>
-  <div class="d-flex justify-content-center h-100">
-    <form method="post">
-        <p>
-            <select id='materia' name="materia" class="mdb-select md-form">
-                <option value=" " disabled selected>Elegir Tópico</option>
-                {% for materia in materias %}
-                    <option value="{{ materia.topico }}">{{ materia.topico }}</option>
-                {% endfor %}
-            </select>
-        </p>
-        <p>{% csrf_token %}<button type="submit" class="btn btn-dark" style="background-color: #13112c" id="input-aceptado" disabled>Elegir Materia</button></p>
-    </form>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="card" style="margin:50px 0">
+        <div class="card-header">Elegir tópico del material:</div>
+        <form action="." method="post">
+          <ul class="list-group list-group-flush">
+              {% for materia in materias %}
+                <li class="list-group-item">
+                    {{ materia.topico }}
+                  <label class="switch ">
+                    <input type="checkbox"
+                           id="materia"
+                           name="materia"
+                           class="{% cycle 'success' 'primary' 'warning' 'default' 'info'  'danger' %}"
+                           value="{{ materia.topico }}">
+                    <span class="slider round"></span>
+                  </label>
+                </li>
+              {% endfor %}
+          </ul>
+          <div class="row justify-content-md-center" style="margin:10px 0">{% csrf_token %}
+            <button type="submit" class="btn btn-dark" style="background-color: #13112c" id="input-aceptado" disabled>
+              Elegir Materia
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <script>
-        $( document ).ready(function() {
-            $('#materia').on('change', function() {
-                if(this.value === " ") {
+        $(document).ready(function () {
+            $(document).change(function () {
+                var checkedNum = $('input[id="materia"]:checked').length;
+                if (!checkedNum) {
                     $('#input-aceptado').attr("disabled", true);
-                    }
-                else {
+                } else {
                     $('#input-aceptado').attr("disabled", false);
-                    }
+                }
             });
         });
     </script>

@@ -1,32 +1,59 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block estilos %}
+  <link rel="stylesheet" type="text/css" href="{% static 'material-form.css' %}">
+{% endblock %}
+
 {% block contenido %}
-  <center><h2> Se ha elegido el tópico: {{ materia }}</h2></center>
-  <center><h3> Elegir un subtópico: </h3></center>
-  <div class="d-flex justify-content-center h-100">
-    <form method="post" id="form-submateria">
-        <p>
-            <select name="submateria" id='submateria' class="mdb-select md-form" >
-                <option value=" " disabled selected>Elegir Subtópico</option>
-                {% for submateria in submaterias %}
-                    <option value="{{ submateria.subtopico }}">{{ submateria.subtopico }}</option>
-                {% endfor %}
-            </select>
-        </p>
-        <p>{% csrf_token %}<button type="submit" class="btn btn-dark" style="background-color: #13112c" name="input-aceptado1" id="input-aceptado1" disabled>Elegir Submateria</button></p>
-    </form>
-    <p hidden id="output"> {{ mensaje }}</p>
+  <div class="container">
+    <div class="row">
+    <div class="card col-md-3" style="margin:50px 0">
+      <div class="card-header">Tópicos elegidos:</div>
+      <ul class="list-group list-group-flush">
+          {% for mat in materia %}
+            <li class="list-group-item">{{ mat }}</li>
+          {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <div class="card" style="margin:50px 0">
+        <div class="card-header">Elegir subtópico del material:</div>
+        <form action="." method="post">
+          <ul class="list-group list-group-flush">
+              {% for submateria in submaterias %}
+                <li class="list-group-item">
+                    {{ submateria.subtopico }}
+                  <label class="switch ">
+                    <input type="checkbox"
+                           id="submateria"
+                           name="submateria"
+                           class="{% cycle 'success' 'primary' 'warning' 'default' 'info'  'danger' %}"
+                           value="{{ submateria.subtopico }}">
+                    <span class="slider round"></span>
+                  </label>
+                </li>
+              {% endfor %}
+          </ul>
+          <div class="row justify-content-md-center" style="margin:10px 0">{% csrf_token %}
+            <button type="submit" class="btn btn-dark" style="background-color: #13112c" id="input-aceptado" disabled>
+              Elegir Subtópicos
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
     <script>
-
-        $( document ).ready(function() {
-
-            $('#submateria').on('change', function() {
-                if(this.value === " ")
-                    $('#input-aceptado1').attr("disabled", true);
-                else
-                    $('#input-aceptado1').attr("disabled", false);
+        $(document).ready(function () {
+            $(document).change(function () {
+                var checkedNum = $('input[id="submateria"]:checked').length;
+                if (!checkedNum) {
+                    $('#input-aceptado').attr("disabled", true);
+                } else {
+                    $('#input-aceptado').attr("disabled", false);
+                }
             });
         });
-
     </script>
   </div>
 

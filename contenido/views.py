@@ -17,15 +17,24 @@ def material(request):
       return redirect("login")
 
     elif "materia" in request.POST.keys():
-      context["submaterias"]=materia.objects.filter(topico=request.POST["materia"]).values("subtopico").order_by().distinct()
-      context["materia"]=request.POST["materia"]
+      consulta = request.POST.getlist('materia')
+      context["submaterias"]=materia.objects.filter(topico__in=consulta).values("subtopico").order_by().distinct()
+      context["materia"]=consulta
       return render(request, 'eleccion-submaterial.html', context)
 
     elif "submateria" in request.POST.keys():
-      actual = materia.objects.get(subtopico=request.POST["submateria"])
-      context["preguntas"]= ejercicio.objects.filter(materia=actual.id)
-      # Hay que crear el modelo de estudio context["preguntas"]=#
-      context["submateria"] = request.POST["submateria"]
+      consulta = request.POST.getlist('submateria')
+      print(request.POST)
+      print(consulta)
+      materias = materia.objects.filter(topico__in=context["materia"], subtopico__in=consulta).order_by().distinct()
+      print(materias)
+      id_materia = []
+      for i in materias:
+        print(i)
+        id_materia.append(i)
+      print(context)
+      context["preguntas"] = ejercicio.objects.filter(materia__in=id_materia).values("ruta").order_by()
+      context["submateria"] = consulta
       return render(request, 'mostrar-material.html', context)
 
   context["materias"] = materia.objects.values("topico").order_by().distinct()
