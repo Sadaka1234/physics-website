@@ -24,16 +24,14 @@ def material(request):
 
     elif "submateria" in request.POST.keys():
       consulta = request.POST.getlist('submateria')
-      print(request.POST)
-      print(consulta)
       materias = materia.objects.filter(topico__in=context["materia"], subtopico__in=consulta).order_by().distinct()
-      print(materias)
       id_materia = []
       for i in materias:
         print(i)
         id_materia.append(i)
-      print(context)
+      print(id_materia)
       context["preguntas"] = ejercicio.objects.filter(materia__in=id_materia).values("ruta").order_by()
+      print(consulta)
       context["submateria"] = consulta
       return render(request, 'mostrar-material.html', context)
 

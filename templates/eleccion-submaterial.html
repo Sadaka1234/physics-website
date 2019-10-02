@@ -7,13 +7,15 @@
 {% block contenido %}
   <div class="container">
     <div class="row">
-    <div class="card col-md-3" style="margin:50px 0">
+    <div class="col-md-3" style="margin:50px 0">
+    <div class="card">
       <div class="card-header">Tópicos elegidos:</div>
       <ul class="list-group list-group-flush">
           {% for mat in materia %}
             <li class="list-group-item">{{ mat }}</li>
           {% endfor %}
       </ul>
+    </div>
     </div>
     <div class="col-md-6">
       <div class="card" style="margin:50px 0">

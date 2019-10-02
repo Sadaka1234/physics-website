@@ -7,21 +7,23 @@
 {% block contenido %}
   <div class="container">
   <div class="row">
-    <div class="card col-md-3" style="margin:50px 0">
+    <div class="col-md-3">
+      <div class="card" style="margin:50px 0">
       <div class="card-header">Tópicos elegidos:</div>
       <ul class="list-group list-group-flush">
           {% for mat in materia %}
             <li class="list-group-item">{{ mat }}</li>
           {% endfor %}
       </ul>
+      </div>
     </div>
     <div class="col-md-3">
       <div class="card" style="margin:50px 0">
         <div class="card-header">Subtópicos elegidos:</div>
           <ul class="list-group list-group-flush">
-              {% for submateria in submaterias %}
+              {% for submat in submateria %}
                 <li class="list-group-item">
-                    {{ submateria.subtopico }}
+                    {{ submat }}
                 </li>
               {% endfor %}
           </ul>
@@ -34,7 +36,7 @@
           <p>Material de estudio encontrado:</p>
           <ul>
               {% for pregunta in preguntas %}
-                <li><a href="#">{{ pregunta.ruta }}</a></li>
+                <li><a href="{{ pregunta.ruta }}">LINK MATERIAL</a></li>
               {% endfor %}
           </ul>
         </div>
@@ -44,7 +46,7 @@
           <p>Preguntas de certamen encontradas:</p>
           <ul>
               {% for pregunta in preguntas %}
-                <li><a href="#">{{ pregunta.ruta }}</a></li>
+                <li><a href="{{ pregunta.ruta }}">LINK-MATERIAL</a></li>
               {% endfor %}
           </ul>
         </div>
