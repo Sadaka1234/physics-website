@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="{% static 'estilo.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'background.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   {% load bootstrap4 %}
   {% bootstrap_css %}
 </head>
@@ -61,7 +62,7 @@
     {%  endblock %}
       <div>
         <div class="col-md-12">
-          <center><h1>Visitaste esta página el: {{ hora }}</h1></center>
+          <center><h1>{{ hora }}</h1></center>
         </div>
       </div>
   {% bootstrap_javascript jquery='full' %}

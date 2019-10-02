@@ -1,10 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django import forms
 
-
-class Ejercicio(models.Model):
+class ejercicio(models.Model):
   ruta = models.CharField(blank=False, null=False, max_length=255)
   dificultad = models.IntegerField(blank=False, null=False)
-  materia = models.ForeignKey('contenido.Materia', on_delete=models.CASCADE)
+  materia = models.ForeignKey('contenido.materia', on_delete=models.CASCADE)
   semestre = models.IntegerField(blank=True, null=False)
   anio = models.IntegerField(blank=True, null=False)
 
@@ -13,8 +14,8 @@ class Ejercicio(models.Model):
 
 
 class ejercicio_usuario(models.Model):
-  ejercicio = models.ForeignKey('preguntas.Ejercicio', on_delete=models.CASCADE)
-  usuario = models.ForeignKey('home.Usuario', on_delete=models.CASCADE)
+  ejercicio = models.ForeignKey('preguntas.ejercicio', on_delete=models.CASCADE)
+  usuario = models.ForeignKey(User, on_delete=models.CASCADE)
   resuelto = models.BooleanField(null=False)
 
   class Meta:

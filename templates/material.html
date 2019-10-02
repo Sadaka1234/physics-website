@@ -1,4 +1,52 @@
 {%  extends 'base.html' %}
 {% block contenido %}
-  <div> BEP </div>
+  <div class="container">
+    <form method="post">
+        <p>
+            <select name="materia" id='materia' class="mdb-select md-form">
+                <option value=" " disabled selected>Elegir Tópico</option>
+                {% for materia in materias %}
+                    <option value="{{ materia.topico }}">{{ materia.topico }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>{% csrf_token %}<button type="submit" class="btn btn-dark" style="background-color: #13112c" name="input-aceptado" id="input-aceptado" disabled>Enviar datos</button></p>
+    </form>
+    {% if submaterias %}
+      <form method="post">
+        <p>
+            <select name="submateria" id='submateria' class="mdb-select md-form">
+                <option value=" " disabled selected>Elegir Tópico</option>
+                {% for submateria in submaterias %}
+                    <option value="{{ submateria.subtopico }}">{{ submateria.subtopico }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>{% csrf_token %}<button type="submit" class="btn btn-dark" style="background-color: #13112c" name="input-aceptado1" id="input-aceptado1" disabled>Enviar datos</button></p>
+    </form>
+    {% endif %}
+  {% if mensaje %}
+    <p> {{ mensaje }}</p>
+  {% endif %}
+    <script>
+        $( document ).ready(function() {
+            $('#materia').on('change', function() {
+                if(this.value === " ")
+                    $('#input-aceptado').attr("disabled", true);
+                else
+                    $('#input-aceptado').attr("disabled", false);
+            });
+        });
+
+        $( document ).ready(function() {
+            $('#submateria').on('change', function() {
+                if(this.value === " ")
+                    $('#input-aceptado1').attr("disabled", true);
+                else
+                    $('#input-aceptado1').attr("disabled", false);
+            });
+        });
+    </script>
+  </div>
+
 {% endblock %}
