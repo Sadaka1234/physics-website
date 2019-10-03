@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block estilos %}
+  <link rel="stylesheet" type="text/css" href="{% static 'material-form.css' %}">
+{% endblock %}
+
+{% block contenido %}
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="card" style="margin:50px 0">
+        <div class="card-header">Elegir tópico del material:</div>
+        <form action="." method="post">
+          <ul class="list-group list-group-flush">
+              {% for materia in materias %}
+                <li class="list-group-item">
+                    {{ materia.topico }}
+                  <label class="switch ">
+                    <input type="checkbox"
+                           id="materia"
+                           name="materia"
+                           class="{% cycle 'success' 'primary' 'warning' 'default' 'info'  'danger' %}"
+                           value="{{ materia.topico }}">
+                    <span class="slider round"></span>
+                  </label>
+                </li>
+              {% endfor %}
+          </ul>
+          <div class="row justify-content-md-center" style="margin:10px 0">{% csrf_token %}
+            <button type="submit" class="btn btn-dark" style="background-color: #13112c" id="input-aceptado" disabled>
+              Elegir Materia
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $(document).change(function () {
+                var checkedNum = $('input[id="materia"]:checked').length;
+                if (!checkedNum) {
+                    $('#input-aceptado').attr("disabled", true);
+                } else {
+                    $('#input-aceptado').attr("disabled", false);
+                }
+            });
+        });
+    </script>
+  </div>
+
+{% endblock %}

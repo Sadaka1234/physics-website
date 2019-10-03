@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block estilos %}
+  <link rel="stylesheet" type="text/css" href="{% static 'material-form.css' %}">
+{% endblock %}
+
+{% block contenido %}
+  <div class="container">
+    <div class="row">
+    <div class="col-md-3" style="margin:50px 0">
+    <div class="card">
+      <div class="card-header">Tópicos elegidos:</div>
+      <ul class="list-group list-group-flush">
+          {% for mat in materia %}
+            <li class="list-group-item">{{ mat }}</li>
+          {% endfor %}
+      </ul>
+    </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card" style="margin:50px 0">
+        <div class="card-header">Elegir subtópico del material:</div>
+        <form action="." method="post">
+          <ul class="list-group list-group-flush">
+              {% for submateria in submaterias %}
+                <li class="list-group-item">
+                    {{ submateria.subtopico }}
+                  <label class="switch ">
+                    <input type="checkbox"
+                           id="submateria"
+                           name="submateria"
+                           class="{% cycle 'success' 'primary' 'warning' 'default' 'info'  'danger' %}"
+                           value="{{ submateria.subtopico }}">
+                    <span class="slider round"></span>
+                  </label>
+                </li>
+              {% endfor %}
+          </ul>
+          <div class="row justify-content-md-center" style="margin:10px 0">{% csrf_token %}
+            <button type="submit" class="btn btn-dark" style="background-color: #13112c" id="input-aceptado" disabled>
+              Elegir Subtópicos
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+    <script>
+        $(document).ready(function () {
+            $(document).change(function () {
+                var checkedNum = $('input[id="submateria"]:checked').length;
+                if (!checkedNum) {
+                    $('#input-aceptado').attr("disabled", true);
+                } else {
+                    $('#input-aceptado').attr("disabled", false);
+                }
+            });
+        });
+    </script>
+  </div>
+
+{% endblock %}

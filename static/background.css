@@ -1,8 +1,7 @@
 .body1 {
-  background-image: url("../media/background.jpg");
-  background-repeat: no-repeat;
-  background-position: left top;
-  background-attachment: scroll;
-  background-repeat: repeat;
+background-image: url("../media/background.jpg");
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
 }
 
