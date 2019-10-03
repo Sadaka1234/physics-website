@@ -34,3 +34,10 @@ Physic-Storm
 
 Nos adelantamos a nuestra era, y instalamos bootstrap para crear un navbar, asi que en caso de no compilar, por favor ejecutar: pip install django-bootstrap4
 
+### Usuario para test:
+
+Casi todos los sitios del sitio son accesibles solo por usuarios, por lo que se permite usar el siguiente usuario para probar el sitio:
+username: tester
+password: holachao
+
+El formulario con las request pedidas para la Entrega 5 están todas en la sección "Material -> Contenidos"
