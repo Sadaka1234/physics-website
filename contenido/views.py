@@ -27,11 +27,8 @@ def material(request):
       materias = materia.objects.filter(topico__in=context["materia"], subtopico__in=consulta).order_by().distinct()
       id_materia = []
       for i in materias:
-        print(i)
         id_materia.append(i)
-      print(id_materia)
-      context["preguntas"] = ejercicio.objects.filter(materia__in=id_materia).values("ruta").order_by()
-      print(consulta)
+      context["preguntas"] = ejercicio.objects.filter(materia__in=id_materia).values("ruta", "materia__subtopico").order_by()
       context["submateria"] = consulta
       return render(request, 'mostrar-material.html', context)
 
