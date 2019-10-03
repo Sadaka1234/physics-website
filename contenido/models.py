@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class materia(models.Model):
@@ -6,3 +7,26 @@ class materia(models.Model):
   subtopico = models.CharField(blank=False, null=False, max_length=255)
   def __str__(self):
     return u'%s' % (self.topico+" -> "+self.subtopico)
+
+
+class estudio(models.Model):
+  ruta = models.CharField(blank=False, null=False, max_length=255)
+  materia = models.ForeignKey('contenido.materia', on_delete=models.CASCADE)
+  nombre = models.CharField(blank=False, null=False, max_length=100)
+  def __str__(self):
+    return u'%s' % self.nombre
+
+
+class estudio_usuario(models.Model):
+  estudio = models.ForeignKey('contenido.estudio', on_delete=models.CASCADE)
+  usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+  leido = models.BooleanField(null=False)
+
+  class Meta:
+    unique_together = (("estudio", "usuario"),)
+
+  def __str__(self):
+    if self.leido == True:
+      return u'%s' % self.usuario.username + " -> " + self.estudio.nombre + " LEIDO"
+    else:
+      return u'%s' % self.usuario.username + " -> " + self.estudio.nombre + " NO-LEIDO"
