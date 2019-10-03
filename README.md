@@ -33,3 +33,4 @@ Jorge Galleguillos 201473545-6
 Physic-Storm
 
 Nos adelantamos a nuestra era, y instalamos bootstrap para crear un navbar, asi que en caso de no compilar, por favor ejecutar: pip install django-bootstrap4
+
