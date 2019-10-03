@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 context = dict()
 context["hora"] = datetime.datetime.now()
 
+
 @login_required(login_url='login')
 def main(request):
   if "cerrar" in request.POST.keys():
@@ -34,4 +35,6 @@ def login(request):
       else:
         context["error"] = "Revisar usuario o contraseña"
         return render(request, 'login.html', context)
+  if request.user.is_authenticated:
+    return redirect("main")
   return render(request, "login.html", context)
