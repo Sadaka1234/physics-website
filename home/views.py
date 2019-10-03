@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
-import datetime
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from preguntas.models import *
+from contenido.models import *
 
 # Create your views here.
 context = dict()
-context["hora"] = datetime.datetime.now()
-
 
 @login_required(login_url='login')
 def main(request):
@@ -38,3 +37,15 @@ def login(request):
   if request.user.is_authenticated:
     return redirect("main")
   return render(request, "login.html", context)
+
+@login_required()
+def profile(request):
+  if "cerrar" in request.POST.keys():
+    auth.logout(request)
+    return redirect("login")
+  contenidos = materia.objects.all().values('materia').order_by().distinct()
+  for i in contenidos:
+    print("queso")
+
+  context["preguntas"] = "queso"
+  return render(request, 'profile.html', context)
