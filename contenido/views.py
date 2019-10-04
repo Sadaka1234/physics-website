@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from contenido.models import materia
 from preguntas.models import ejercicio, ejercicio_usuario
 from .forms import TopicoForm
+import os
 
 context = dict()
 
@@ -34,3 +35,16 @@ def material(request):
 
   context["materias"] = materia.objects.values("topico").order_by().distinct()
   return render(request, 'eleccion-material.html', context)
+
+
+@login_required(login_url='login')
+def libro_pdf(request):
+  if request.method == 'POST':
+    if "cerrar" in request.POST.keys():
+      auth.logout(request)
+      return redirect("login")
+
+    if "pdf_ruta" in request.POST.keys():
+      pdf = open(request.POST["pdf_ruta"],'rb')
+      pdf.seek(0)
+      return FileResponse(pdf, as_attachment=False, filename='fisica.pdf')
