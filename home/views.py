@@ -10,19 +10,20 @@ context = dict()
 
 @login_required(login_url='login')
 def main(request):
-  if "cerrar" in request.POST.keys():
-    auth.logout(request)
-    return redirect("login")
+  if request.method == 'POST':
+    if "cerrar" in request.POST.keys():
+      auth.logout(request)
+      return redirect("login")
   return render(request, 'main.html', context)
 
 
 @login_required(login_url='login')
 def idem(request):
-  if "cerrar" in request.POST.keys():
-    auth.logout(request)
-    return redirect("login")
+  if request.method == 'POST':
+    if "cerrar" in request.POST.keys():
+      auth.logout(request)
+      return redirect("login")
   return render(request, 'idem.html', context)
-
 
 def login(request):
   if request.method == 'POST':
@@ -38,14 +39,27 @@ def login(request):
     return redirect("main")
   return render(request, "login.html", context)
 
+
+def signup(request):
+  if request.user.is_authenticated:
+    return redirect("main")
+  return render(request, "signup.html", context)
+
+
 @login_required()
 def profile(request):
-  if "cerrar" in request.POST.keys():
-    auth.logout(request)
-    return redirect("login")
-  contenidos = materia.objects.all().values('materia').order_by().distinct()
+  if request.method == 'POST':
+    if "cerrar" in request.POST.keys():
+      auth.logout(request)
+      return redirect("login")
+
+  email = User.objects.filter(is_active=True).exclude(email='').values_list('email', flat=True)[0]
+  context["email"] = email
+  contenidos = materia.objects.all().values('topico').order_by().distinct()
+
   for i in contenidos:
-    print("queso")
+    print(" o ")
 
   context["preguntas"] = "queso"
   return render(request, 'profile.html', context)
+

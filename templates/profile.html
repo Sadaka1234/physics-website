@@ -1,10 +1,18 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
 {% block contenido %}
   <div class="container" style="margin-top: 50px">
-    <div class="card">
-
-
-
+  <div class="card text-center">
+    <div class="card-header">Información personal:</div>
+    <div class="card-body">
+    <div class="row"><b>Nombre usuario:</b> {{ user.get_username }}</div>
+    <div class="row"><b>Email: </b> {{ email }}</div>
+      <div class="row">
+        <div><b>Preguntas respondidas:</b></div>
+      </div>
+      <div class="row">
+        <div><b>Lecturas favoritas:</b></div>
+      </div>
+      </div>
     </div>
   </div>
 {% endblock %}
