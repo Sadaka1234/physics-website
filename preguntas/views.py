@@ -6,8 +6,4 @@ context = dict()
 
 @login_required(login_url='login')
 def pregunta(request):
-  if request.method =='POST':
-    if "cerrar" in request.POST.keys():
-      auth.logout(request)
-      return redirect("login")
   return render(request, 'pregunta.html', context)

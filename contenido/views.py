@@ -13,14 +13,10 @@ context = dict()
 @login_required(login_url='login')
 def material(request):
   if request.method == 'POST':
-    if "cerrar" in request.POST.keys():
-      auth.logout(request)
-      return redirect("login")
-
-    elif "materia" in request.POST.keys():
+    if "materia" in request.POST.keys():
       consulta = request.POST.getlist('materia')
-      context["submaterias"]=materia.objects.filter(topico__in=consulta).values("subtopico").order_by().distinct()
-      context["materia"]=consulta
+      context["submaterias"] = materia.objects.filter(topico__in=consulta).values("subtopico").order_by().distinct()
+      context["materia"] = consulta
       return render(request, 'eleccion-submaterial.html', context)
 
     elif "submateria" in request.POST.keys():
@@ -29,7 +25,8 @@ def material(request):
       id_materia = []
       for i in materias:
         id_materia.append(i)
-      context["preguntas"] = ejercicio.objects.filter(materia__in=id_materia).values("ruta", "materia__subtopico").order_by()
+      context["preguntas"] = ejercicio.objects.filter(materia__in=id_materia).values("ruta",
+                                                                                     "materia__subtopico").order_by()
       context["submateria"] = consulta
       return render(request, 'mostrar-material.html', context)
 
@@ -40,11 +37,7 @@ def material(request):
 @login_required(login_url='login')
 def libro_pdf(request):
   if request.method == 'POST':
-    if "cerrar" in request.POST.keys():
-      auth.logout(request)
-      return redirect("login")
-
     if "pdf_ruta" in request.POST.keys():
-      pdf = open(request.POST["pdf_ruta"],'rb')
+      pdf = open(request.POST["pdf_ruta"], 'rb')
       pdf.seek(0)
       return FileResponse(pdf, as_attachment=False, filename='fisica.pdf')

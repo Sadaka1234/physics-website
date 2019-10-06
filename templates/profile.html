@@ -4,14 +4,12 @@
   <div class="card text-center">
     <div class="card-header">Información personal:</div>
     <div class="card-body">
-    <div class="row"><b>Nombre usuario:</b> {{ user.get_username }}</div>
-    <div class="row"><b>Email: </b> {{ email }}</div>
-      <div class="row">
-        <div><b>Preguntas respondidas:</b></div>
-      </div>
-      <div class="row">
-        <div><b>Lecturas favoritas:</b></div>
-      </div>
+      <div class="row"><div class="col-3 text-left"><b>Nombre usuario:</b></div> <div class="col text-left">{{ user.get_username }}</div></div>
+      <div class="row"><div class="col-3 text-left"><b>E-Mail:</b></div> <div class="col text-left">{{ user.email }}</div></div>
+      <div class="row"><div class="col-3 text-left"><b>Preguntas respondidas:</b></div></div>
+
+
+      <div class="row"><div class="col-3 text-left"><b>Lecturas favoritas:</b></div></div>
       </div>
     </div>
   </div>
