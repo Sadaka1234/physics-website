@@ -36,7 +36,14 @@
           <p>Libros y lecturas encontradas:</p>
           <ul>
               {% for estudio in estudios %}
-                <li><a target="_blank" href="{% static estudio.ruta %}">{{ estudio.nombre }}</a></li>
+                <li>
+                  <form target="_blank" method="POST">
+                  {% csrf_token %}
+                    <input type="hidden" id="estudio-leido" name="estudio-leido" value={{ estudio.id }}>
+                    <input type="hidden" id="ruta-leido" name="ruta-leido" value="{% static estudio.ruta %}">
+                    <button type="submit" name="estudio-usuario" value="estudio-usuario" class="btn-link" style="border: none;">{{ estudio.nombre }}</button>
+                  </form>
+                </li>
               {% endfor %}
           </ul>
         </div>
@@ -46,7 +53,9 @@
           <p>Preguntas de certamen encontradas:</p>
           <ul>
               {% for pregunta in preguntas %}
-                <li><a href="{{ pregunta.ruta }}"> Soy pregunta de subtopico: {{ pregunta.materia__subtopico }} </a></li>
+                <li>
+                  <a href="{{ pregunta.ruta }}"> Soy pregunta de subtopico: {{ pregunta.materia__subtopico }}</a>
+                </li>
               {% endfor %}
           </ul>
         </div>

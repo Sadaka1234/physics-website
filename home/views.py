@@ -67,18 +67,24 @@ def signup(request):
 @login_required(login_url="login_view")
 def profile(request):
   #print(dir(request.user))
-  topicos = materia.objects.all().values('topico').order_by().distinct()
+  topicos = materia.objects.all().values('topico').order_by("ejercicio__nombre").distinct()
   context['perfil'] = dict()
+  context['estudios'] = dict()
   for topico in topicos:
     topico = topico['topico']
-    preguntas = ejercicio_usuario.objects.filter(usuario=request.user, ejercicio__materia__topico=topico).values('ejercicio__ruta','resuelto').order_by().distinct()
+    preguntas = ejercicio_usuario.objects.filter(usuario=request.user, ejercicio__materia__topico=topico).values('ejercicio__ruta','resuelto').order_by("ejercicio__nombre").distinct()
+    estudios = estudio_usuario.objects.filter(usuario=request.user, estudio__materia__topico=topico).values("estudio__ruta", "estudio__nombre").order_by("estudio__nombre").distinct()
     if preguntas:
       context['perfil'][topico] = []
       for pregunta in preguntas:
         (context['perfil'][topico]).append((pregunta['ejercicio__ruta'],pregunta['resuelto']))
+    if estudios:
+      context['estudios'][topico] = []
+      for estudio in estudios:
+        (context['estudios'][topico]).append((estudio["estudio__nombre"], estudio['estudio__ruta']))
 
     if context['perfil'] == {}:
       context['perfil']["No has resuelto preguntas! Es un buen momento para ponerte a estudiar! :D"] = []
-
-
-  return render(request, 'profile.html', context)
+    if context['estudios'] == {}:
+      context['estudios']["No se ha leido nada! Más vale empezar a estudiar ;3"] = []
+  return render(request, "profile.html", context)

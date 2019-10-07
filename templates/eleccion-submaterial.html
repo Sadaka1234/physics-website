@@ -21,6 +21,7 @@
       <div class="card" style="margin:50px 0">
         <div class="card-header">Elegir subtópico del material:</div>
         <form action="." method="post">
+          {% csrf_token %}
           <ul class="list-group list-group-flush">
               {% for submateria in submaterias %}
                 <li class="list-group-item">
@@ -36,7 +37,7 @@
                 </li>
               {% endfor %}
           </ul>
-          <div class="row justify-content-md-center" style="margin:10px 0">{% csrf_token %}
+          <div class="row justify-content-md-center" style="margin:10px 0">
             <button type="submit" class="btn btn-dark" id="input-aceptado" disabled>
               Elegir Subtópicos
             </button>
