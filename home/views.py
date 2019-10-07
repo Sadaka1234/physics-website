@@ -69,11 +69,14 @@ def profile(request):
   context['perfil'] = dict()
   for topico in topicos:
     topico = topico['topico']
-    print(topico)
     preguntas = ejercicio_usuario.objects.filter(usuario=request.user, ejercicio__materia__topico=topico).values('ejercicio__ruta','resuelto').order_by().distinct()
-    context['perfil'][topico] = []
-    for pregunta in preguntas:
-      (context['perfil'][topico]).append((pregunta['ejercicio__ruta'],pregunta['resuelto']))
-    print(context['perfil'])
+    if preguntas:
+      context['perfil'][topico] = []
+      for pregunta in preguntas:
+        (context['perfil'][topico]).append((pregunta['ejercicio__ruta'],pregunta['resuelto']))
+
+    if context['perfil'] == {}:
+      context['perfil']["No has resuelto preguntas! Es un buen momento para ponerte a estudiar! :D"] = []
+
 
   return render(request, 'profile.html', context)

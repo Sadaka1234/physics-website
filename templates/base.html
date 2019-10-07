@@ -14,7 +14,7 @@
   {% bootstrap_css %}
 </head>
 <body class="body1">
-      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1f1c71; font-size: larger">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2a24ae; font-size: medium; height: 50px ">
         <a class="navbar-brand" href={% url 'main' %}>
           <span><i class="fa fa-fw fa-home"></i></span>
           Physic-Storm
@@ -44,7 +44,7 @@
         </div>
         <!-- Default dropleft button -->
         <div class="btn-group btn-lg margin-right">
-          <button type="button" class="btn btn-primary btn-lg dropdown-toggle" style="background-color: #110f4d" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn btn-primary btn-md dropdown-toggle" style="background-color: #141287" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user" style="color: aliceblue"></i>&ensp;
             {% if user.is_authenticated %}
                   {{ user.get_username }}
@@ -56,11 +56,20 @@
             <a class="dropdown-item" href="#"> Estadisticas </a>
             <div class="dropdown-divider"></div>
             <div class="dropdown-item">
-                <a class="btn btn-primary" style="background-color: #283abd" href="{% url 'logout' %}" role="button">Cerrar Sesión</a>
+                <a class="btn btn-dark" href="{% url 'logout' %}" role="button">Cerrar Sesión</a>
             </div>
           </div>
         </div>
       </nav>
+      <script>
+          $(function(){
+              $('a').each(function(){
+                  if ($(this).prop('href') == window.location.href) {
+                      $(this).addClass('active'); $(this).parents('li').addClass('active');
+                  }
+              });
+          });
+      </script>
      {% block contenido %}
     {%  endblock %}
   {% bootstrap_javascript jquery='full' %}
@@ -68,3 +77,5 @@
 {% block latex-scripts %}
 {% endblock %}
 </html>
+
+
