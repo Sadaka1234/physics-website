@@ -6,6 +6,8 @@ from contenido.models import *
 from preguntas.models import *
 from home.forms import SignUpForm
 from django.utils.translation import activate
+import os
+
 activate('es')
 
 # Create your views here.

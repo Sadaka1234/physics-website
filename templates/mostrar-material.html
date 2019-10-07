@@ -35,8 +35,8 @@
         <div>
           <p>Libros y lecturas encontradas:</p>
           <ul>
-              {% for pregunta in preguntas %}
-                <li><a href="{{ pregunta.ruta }}">Soy material de subtopico: {{ pregunta.materia__subtopico }}</a></li>
+              {% for estudio in estudios %}
+                <li><a target="_blank" href="{% static estudio.ruta %}">{{ estudio.nombre }}</a></li>
               {% endfor %}
           </ul>
         </div>
