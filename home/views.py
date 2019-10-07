@@ -3,6 +3,7 @@ from django.contrib import auth
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from contenido.models import *
+from preguntas.models import *
 from home.forms import SignUpForm
 from django.utils.translation import activate
 activate('es')
@@ -64,10 +65,15 @@ def signup(request):
 @login_required(login_url="login_view")
 def profile(request):
   #print(dir(request.user))
-  contenidos = materia.objects.all().values('topico').order_by().distinct()
+  topicos = materia.objects.all().values('topico').order_by().distinct()
+  context['perfil'] = dict()
+  for topico in topicos:
+    topico = topico['topico']
+    print(topico)
+    preguntas = ejercicio_usuario.objects.filter(usuario=request.user, ejercicio__materia__topico=topico).values('ejercicio__ruta','resuelto').order_by().distinct()
+    context['perfil'][topico] = []
+    for pregunta in preguntas:
+      (context['perfil'][topico]).append((pregunta['ejercicio__ruta'],pregunta['resuelto']))
+    print(context['perfil'])
 
-  for i in contenidos:
-    print(" o ")
-
-  context["preguntas"] = "queso"
   return render(request, 'profile.html', context)

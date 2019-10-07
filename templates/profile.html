@@ -6,10 +6,29 @@
     <div class="card-body">
       <div class="row"><div class="col-3 text-left"><b>Nombre usuario:</b></div> <div class="col text-left">{{ user.get_username }}</div></div>
       <div class="row"><div class="col-3 text-left"><b>E-Mail:</b></div> <div class="col text-left">{{ user.email }}</div></div>
-      <div class="row"><div class="col-3 text-left"><b>Preguntas respondidas:</b></div></div>
-
+      <div class="row"><div class="col-3 text-left"><b>Preguntas vistas:</b></div></div>
+      {% for topico, preguntas in perfil.items %}
+        <div class="row justify-content-left">
+          <div class="col-sm-1"></div>
+          <div class="col text-left"><b> * {{ topico }}</b></div>
+        </div>
+          {% for pregunta in preguntas %}
+            <div class="row">
+            <div class="col-sm-2"></div>
+              <div class="col text-left"><a href={{ pregunta.0 }}>* {{ pregunta.0 }}</a></div>
+            <div class="col text-right">
+              {% if pregunta.1 %}
+                <a style="color: green">Resuelta</a>
+               {% else %}
+                <a style="color: red">No resuelta</a>
+              {% endif %}
+            </div>
+            </div>
+          {% endfor %}
+      {% endfor %}
 
       <div class="row"><div class="col-3 text-left"><b>Lecturas favoritas:</b></div></div>
+
       </div>
     </div>
   </div>

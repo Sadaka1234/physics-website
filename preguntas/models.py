@@ -22,7 +22,4 @@ class ejercicio_usuario(models.Model):
     unique_together = (("ejercicio", "usuario"),)
 
   def __str__(self):
-    if self.resuelto == True:
-      return u'%s' % self.usuario + " -> " + self.ejercicio.ruta + " RESUELTO"
-    else:
-      return u'%s' % self.usuario + " -> " + self.ejercicio.ruta + " NO-RESUELTO"
+      return u'%s' % self.ejercicio.ruta
