@@ -2,17 +2,27 @@
 
 {% block latex-scripts %}
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script >
+    <script>
 
-        window.MathJax = {
-          tex: {
-            tags: 'ams'
+        MathJax.Hub.Config({
+          showMathMenu: false,
+          extensions: ["tex2jax.js"],
+          jax: ["input/TeX", "output/HTML-CSS"],
+          tex2jax: {
+              skipTags: ["body"],
+              processClass: "Ejercicio"
           }
+        });
+        MathJax = {
+            tex: {
+              tags: 'ams'  // should be 'ams', 'none', or 'all'
+            }
         };
 
     </script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 {% endblock %}
 

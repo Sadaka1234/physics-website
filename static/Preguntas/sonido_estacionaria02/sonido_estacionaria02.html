@@ -1,22 +1,4 @@
-
-{% block MathJax %}
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script >
-  MathJax = {
-    tex: {
-      tags: 'ams'  // should be 'ams', 'none', or 'all'
-    }
-  };
-  </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  <Style>
-      #mainmini {
-      display: flex;
-      border: 1px solid black;
-    }
-{% endblock %}
- 
-<div class = 'Ejercicio' >
+ <div class = 'Ejercicio' >
  
 <div class='enunciado'> Un parlante emite una onda \( y(x,t) = A \sin \left( kx - \omega t \right) \) que viaja a la velocidad del sonido \(c\) por dentro de un tubo de largo \(L\), abierto por ambos lados, y con un agujero a una distancia \(L/3\) de uno de sus extremos, como se muestra en la siguiente figura.
 

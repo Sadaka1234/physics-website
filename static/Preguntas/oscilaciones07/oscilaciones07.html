@@ -1,22 +1,4 @@
-
-{% block MathJax %}
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script >
-  MathJax = {
-    tex: {
-      tags: 'ams'  // should be 'ams', 'none', or 'all'
-    }
-  };
-  </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  <Style>
-      #mainmini {
-      display: flex;
-      border: 1px solid black;
-    }
-{% endblock %}
- 
-<div class = 'Ejercicio' >
+ <div class = 'Ejercicio' >
  
 <div class='enunciado'> Una barra homogénea de masa \(m\) y largo \(l\), puede moverse en un plano vertical a causa de un pivote ubicado en uno de sus extremos. La barra está sumergida en un fluido, el cual le ejerce una fuerza de fricción proporcional a la velocidad de su centro de masa, tal que \(\vec{F}_{r}=-b\,\vec{v}_{\scriptsize{\text{CM}}}\), donde \(b\) es la constante de amortiguamiento. Considere que el fluido solo ejerce la fuerza de roce sobre la barra.
 <p><img src='1.svg' class='center'>

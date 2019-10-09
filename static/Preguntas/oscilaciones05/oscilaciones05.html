@@ -1,22 +1,4 @@
-
-{% block MathJax %}
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script >
-  MathJax = {
-    tex: {
-      tags: 'ams'  // should be 'ams', 'none', or 'all'
-    }
-  };
-  </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  <Style>
-      #mainmini {
-      display: flex;
-      border: 1px solid black;
-    }
-{% endblock %}
- 
-<div class = 'Ejercicio' >
+ <div class = 'Ejercicio' >
  
 <div class='enunciado'> Una barra de largo \(L\) y masa \(M_B\), se encuentra unida al extremo de una golilla de radio interno \(r\), radio externo \(R\), masa \(M_G\) y espesor despreciable. Usted consta de dos sistemas de péndulo, uno que oscila de frente a usted (esquema 1), que no siente el roce, y otro que oscila de costado a usted (esquema 2), que siente el roce del aire solo en la golilla. Ambos péndulos tienen unido a su extremo dos resortes de constantes elásticas \(k_1\) y \(k_2\), tal como muestra la figura. Usted debe determinar la potencia promedio de una fuerza armónica externa resonante al sistema, aplicada en el centro de la golilla para el sistema 2.
 
