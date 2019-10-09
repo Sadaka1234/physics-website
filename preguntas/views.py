@@ -15,36 +15,36 @@ def pregunta(request):
     if "certamen" in request.POST.keys():
       certamen = request.POST["certamen"]
       if certamen == "Todo":
-        materias = materia.objects.all()
+        materias = ejercicio.objects.all().distinct()
       else:
-        materias = materia.objects.filter(topico=certamen)
-
-      preguntas = get_pregunta(3, materias)
-      print(preguntas)
-
-
-  context["elecciones"] = [("Certamen 1: "," Oscilaciones, Ondas mecánicas y Sonido"),("Certamen Global: ","Todo")]
+        materias = ejercicio.objects.filter(materia__topico=certamen).all()
+      context['certamen'] = get_pregunta(3, materias)
+      return redirect(display_certamen)
+  context["elecciones"] = [("Certamen 1: ","Oscilaciones, Ondas mecánicas y Sonido"),("Certamen Global: ","Todo")]
   return render(request, 'eleccion-certamen.html', context)
 
 
-def get_pregunta(cantidad, topico):
-  preguntas = []
-
-  if topico == "Todo":
-    max_id = ejercicio.objects.all().aggregate(max_id=Max("id"))['max_id']
-    preguntas= ejercicio.objects.all()
-  else:
-    max_id = ejercicio.objects.filter(materia__topico__in=topico).aggregate(max_id=Max("id"))['max_id']
-    preguntas= ejercicio.objects.filter(materia__topico__in=topico)
+def get_pregunta(cantidad, preguntas):
+  output = []
+  max_id = preguntas.all().aggregate(max_id=Max("id"))['max_id']
 
   while True:
     pk = random.randint(1, max_id)
     pregunta = preguntas.filter(pk=pk).first()
 
-    if pregunta and pregunta not in preguntas:
-      preguntas.append( pregunta )
+    if len(output) == cantidad:
+      return output
 
-    if len(preguntas) == cantidad:
-      return preguntas
+    if pregunta and (pregunta not in output):
+      output.append( pregunta )
+
+
+@login_required(login_url='login_view')
+def display_certamen(request):
+  if "certamen" in context.keys():
+    return render(request, 'mostrar-certamen.html', context)
+  else:
+    return redirect(pregunta)
+
 
 
