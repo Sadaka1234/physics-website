@@ -11,8 +11,13 @@
     <div class="card">
       <div class="card-header">Tópicos elegidos:</div>
       <ul class="list-group list-group-flush">
+      {% for mate in materiasreales %}
+          {% cycle 'success' 'primary' 'warning' 'default' 'info'  'danger' as rowcolors silent %}
           {% for mat in materia %}
-            <li class="list-group-item">{{ mat }}</li>
+            {% if mat == mate.topico %}
+              <li class="list-group-item text-{{ rowcolors }}">{{ mat }}</li>
+            {% endif %}
+          {% endfor %}
           {% endfor %}
       </ul>
     </div>
@@ -22,18 +27,23 @@
         <div class="card-header">Elegir subtópico del material:</div>
         <form action="." method="get">
           <ul class="list-group list-group-flush">
+            {% for materia in materias %}
+              {% cycle 'success' 'primary' 'warning' 'default' 'info'  'danger' as rowcolors silent %}
               {% for submateria in submaterias %}
+                {% if materia.topico == submateria.topico %}
                 <li class="list-group-item">
                     {{ submateria.subtopico }}
                   <label class="switch ">
                     <input type="checkbox"
                            id="submateria"
                            name="submateria"
-                           class="{% cycle 'success' 'primary' 'warning' 'default' 'info'  'danger' %}"
+                           class="{{ rowcolors }}"
                            value="{{ submateria.subtopico }}">
                     <span class="slider round"></span>
                   </label>
                 </li>
+                {% endif %}
+                {% endfor %}
               {% endfor %}
           </ul>
           <div class="row justify-content-md-center" style="margin:10px 0">

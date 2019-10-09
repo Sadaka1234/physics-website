@@ -11,11 +11,10 @@ context = dict()
 def material(request):
 
   if request.method == 'GET':
-
     if "materia" in request.GET.keys():
-
       consulta = request.GET.getlist('materia')
-      context["submaterias"] = materia.objects.filter(topico__in=consulta).values("subtopico").order_by("topico","subtopico").distinct()
+      context["submaterias"] = materia.objects.filter(topico__in=consulta).values("topico","subtopico").order_by("topico","subtopico").distinct()
+      context["materiasreales"] = materia.objects.order_by("topico","subtopico").values("topico").order_by().distinct()
       context["materia"] = consulta
       if context["submaterias"]:
         return render(request, 'eleccion-submaterial.html', context)
