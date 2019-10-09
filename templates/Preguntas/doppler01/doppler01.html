@@ -1,4 +1,6 @@
- <div class = 'Ejercicio' >
+{% load staticfiles %}
+{% verbatim %} 
+<div class = 'Ejercicio' >
  
 <div class='enunciado'>
 
@@ -17,14 +19,14 @@
 <ol type='a'>
 <li>
 Se tiene el siguiente sistema de referencia inicial:
-<p><img src='1.svg' class='center'>
+<p>{% endverbatim %}<img src='{% static 'Preguntas/doppler01/1.svg' %}' class='center'>{% verbatim %}
 
 luego:
 \begin{equation*}f_{\text{p}}=\frac{v_{\text{s}}+v_{\text{p}}}{v_{\text{s}}-v_{\text{d}}}f_{\text{d}}\end{equation*}
 Y cuando el delfín se convierte en receptor se tiene:
 
 <div style='position:relative;width:60%'>
-<p><img src='2.svg' class='center'>
+<p>{% endverbatim %}<img src='{% static 'Preguntas/doppler01/2.svg' %}' class='center'>{% verbatim %}
 </div>
 <div style='position:relative;width:40%'>
 \begin{align*}&\Rightarrow f_{\text{r}}=\frac{v_{\text{s}}+v_{\text{d}}}{v_{\text{s}}-v_{\text{p}}}f_{\text{p}}\\&\Rightarrow f_{\text{r}}=\frac{v_{\text{s}}+v_{\text{d}}}{v_{\text{s}}-v_{\text{p}}}\cdot\frac{v_{\text{s}}+v_{\text{p}}}{v_{\text{s}}-v_{\text{d}}}f_{\text{d}}\\\end{align*}
@@ -43,3 +45,4 @@ Se tiene que \(v_{\text{s}_{\text{(agua)}}}>v_{\text{s}_{\text{(aire)}}}=340 \le
 </div> 
 
 </div>
+{% endverbatim %} 

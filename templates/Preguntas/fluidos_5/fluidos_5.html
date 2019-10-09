@@ -1,4 +1,6 @@
- <div class = 'Ejercicio' >
+{% load staticfiles %}
+{% verbatim %} 
+<div class = 'Ejercicio' >
  
 <div class='enunciado'><div id='mainmini'>
 <div style='position:relative;width:47%'>
@@ -8,7 +10,7 @@ donde la viscosidad del fluido es \(\eta\).
 </div>
 <div style='position:relative;width:50%'>
 
-<img src='1.svg' class='center'>
+{% endverbatim %}<img src='{% static 'Preguntas/fluidos_5/1.svg' %}' class='center'>{% verbatim %}
 
 </div>
 </div>
@@ -70,3 +72,4 @@ $$\bbox[yellow,10px, border: 2px solid red]{\begin{equation*}t = \dfrac{8 A \eta
 </div> 
 
 </div>
+{% endverbatim %} 

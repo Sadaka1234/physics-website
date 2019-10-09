@@ -8,7 +8,8 @@
   <link rel="stylesheet" type="text/css" href="{% static 'background.css' %}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-  {% block estilos %}
+  {% block latex-scripts %}
+  {% endblock %}{% block estilos %}
   {% endblock %}
   {% load bootstrap4 %}
   {% bootstrap_css %}
@@ -73,8 +74,6 @@
     {%  endblock %}
   {% bootstrap_javascript jquery='full' %}
 </body>
-{% block latex-scripts %}
-{% endblock %}
 <div class="container" style="margin-top:50px;bottom:0%">
   <hr>
 </div>

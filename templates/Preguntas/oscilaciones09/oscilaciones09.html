@@ -1,14 +1,16 @@
- <div class = 'Ejercicio' >
+{% load staticfiles %}
+{% verbatim %} 
+<div class = 'Ejercicio' >
  
 <div class='enunciado'> A un disco de masa \(M\) y radio \(R\) se le saca un trozo concéntrico de radio \(r\). Este disco está unido a dos resortes de constante elástica \(k\) y gira respecto al eje que se indica en la siguiente figura de la izquierda, la figura de la derecha corresponde a otra vista del disco.
 
 
 <div style='border:1px solid black;'>
-<img src='1.svg' class='center'>
+{% endverbatim %}<img src='{% static 'Preguntas/oscilaciones09/1.svg' %}' class='center'>{% verbatim %}
 
 
 
-<img src='2.svg' class='center'>
+{% endverbatim %}<img src='{% static 'Preguntas/oscilaciones09/2.svg' %}' class='center'>{% verbatim %}
 
 </div>
 
@@ -18,7 +20,7 @@
 
 
 <div style='border:1px solid black;'>
-<img src='3.svg' class='center'>
+{% endverbatim %}<img src='{% static 'Preguntas/oscilaciones09/3.svg' %}' class='center'>{% verbatim %}
 </div>
 
 
@@ -37,7 +39,7 @@ Se ubica un amortiguador a una distancia \(x\) desde el centro de giro como se m
 
 
 <div style='border:1px solid black;'>
-<img src='4.svg' class='center'>
+{% endverbatim %}<img src='{% static 'Preguntas/oscilaciones09/4.svg' %}' class='center'>{% verbatim %}
 </div>
 
 
@@ -55,3 +57,4 @@ La única condición que debe satisfacer \(x\) es que debe ser menor a \(R\). Po
 </div> 
 
 </div>
+{% endverbatim %} 

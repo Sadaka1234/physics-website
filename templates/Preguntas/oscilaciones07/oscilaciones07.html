@@ -1,7 +1,9 @@
- <div class = 'Ejercicio' >
+{% load staticfiles %}
+{% verbatim %} 
+<div class = 'Ejercicio' >
  
 <div class='enunciado'> Una barra homogénea de masa \(m\) y largo \(l\), puede moverse en un plano vertical a causa de un pivote ubicado en uno de sus extremos. La barra está sumergida en un fluido, el cual le ejerce una fuerza de fricción proporcional a la velocidad de su centro de masa, tal que \(\vec{F}_{r}=-b\,\vec{v}_{\scriptsize{\text{CM}}}\), donde \(b\) es la constante de amortiguamiento. Considere que el fluido solo ejerce la fuerza de roce sobre la barra.
-<p><img src='1.svg' class='center'>
+<p>{% endverbatim %}<img src='{% static 'Preguntas/oscilaciones07/1.svg' %}' class='center'>{% verbatim %}
 <ol type='a'>
 <li> Determine la ecuación de movimiento para el movimiento oscilatorio de la barra en torno a su posición de equilibrio, considerando pequeñas oscilaciones.
 
@@ -13,7 +15,7 @@
 </div><div class='solucion'>
 
 <ol type='a'>
-<li><p><img src='2.svg' class='center'>
+<li><p>{% endverbatim %}<img src='{% static 'Preguntas/oscilaciones07/2.svg' %}' class='center'>{% verbatim %}
 
 De acuerdo al diagrama de cuerpo libre de la figura, en donde se representan las únicas dos fuerzas que realizan torque respecto del pivote, podemos escribir
 \begin{equation*}I \ddot{\theta} = -\frac{l}{2}b\frac{l}{2} \dot{\theta} -mg\frac{l}{2} \sin \theta\,,\end{equation*}
@@ -33,3 +35,4 @@ Por inspección, vemos que \(\gamma=3b/8m\) y \(\omega_{0}^{2}=3g/2l\). Luego, 
 </div> 
 
 </div>
+{% endverbatim %} 

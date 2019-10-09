@@ -1,4 +1,6 @@
- <div class = 'Ejercicio' >
+{% load staticfiles %}
+{% verbatim %} 
+<div class = 'Ejercicio' >
  
 <div class='enunciado'>
 <ol type='a'>
@@ -82,10 +84,11 @@ Las constantes son:
 \begin{align*}x_h(t) &= A_1 e^{-\frac{B}{2A} t} \cos \left( \sqrt{ \frac{C}{A} - \frac{B^2}{4A^2}} \ t + \phi_1 \right) \\x_p(t) &= \frac{D}{C}t + \frac{CE-BD}{C^2} \\x(t) &= A_1 e^{-\frac{B}{2A} t} \cos \left( \sqrt{ \frac{C}{A} - \frac{B^2}{4A^2}} \ t + \phi_1 \right) + \frac{D}{C}t + \frac{CE-BD}{C^2}\end{align*}
 
 
-<img src='1.svg' class='center'>
+{% endverbatim %}<img src='{% static 'Preguntas/oscilaciones08/1.svg' %}' class='center'>{% verbatim %}
 
 </li></ol>
 </li></ol>
 </div> 
 
 </div>
+{% endverbatim %} 

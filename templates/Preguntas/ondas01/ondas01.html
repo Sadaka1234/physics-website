@@ -1,4 +1,6 @@
- <div class = 'Ejercicio' >
+{% load staticfiles %}
+{% verbatim %} 
+<div class = 'Ejercicio' >
  
 <div class='enunciado'>
 Considere la siguiente función \(f(x,t)\), donde \(A\), \(k\) y \(w\) son constantes; la posición \(x\) se mide en metros y el tiempo \(t\) en segundos.
@@ -32,7 +34,8 @@ $$\bbox[yellow,10px, border: 2px solid red]{\begin{equation*}v = \frac{\omega}{K
 
 Como \(\rho_2 >>> \rho_1\), no existe transmisión del pulso al medio 2, por lo cual éste se refleja completamente con una amplitud \(-A\), siendo \(A\) la amplitud de la onda incidente
 
-<p><img src='1.svg' class='center'>
+<p>{% endverbatim %}<img src='{% static 'Preguntas/ondas01/1.svg' %}' class='center'>{% verbatim %}
 </div> 
 
 </div>
+{% endverbatim %} 

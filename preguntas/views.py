@@ -42,7 +42,8 @@ def get_pregunta(cantidad, preguntas):
 @login_required(login_url='login_view')
 def display_certamen(request):
   if "certamen" in context.keys():
-    return render(request, 'mostrar-certamen.html', context)
+    for i in context["certamen"]:
+     return render(request, 'mostrar-certamen.html', context)
   else:
     return redirect(pregunta)
 
