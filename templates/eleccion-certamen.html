@@ -8,23 +8,24 @@
   <div class="container">
     <div class="row justify-content-md-center">
       <div class="card" style="margin:50px 0">
-        <div class="card-header">Elegir tópico del material:</div>
-        <form action="." method="get">
+        <div class="card-header">Elegir certamen:</div>
+        <form action="." method="post">
           <ul class="list-group list-group-flush">
-              {% for materia in materias %}
+              {% for certamen in elecciones %}
                 <li class="list-group-item">
-                    {{ materia.topico }}
+                    {{ certamen.0 }}{{ certamen.1 }}
                   <label class="switch">
                     <input type="checkbox"
-                           id="materia"
-                           name="materia"
+                           id="certamen"
+                           name="certamen"
                            class="{% cycle 'success' 'primary' 'warning' 'default' 'info'  'danger' %}"
-                           value="{{ materia.topico }}">
+                           value="{{ certamen.1 }}">
                     <span class="slider round"></span>
                   </label>
                 </li>
               {% endfor %}
           </ul>
+          {% csrf_token %}
           <div class="row justify-content-md-center" style="margin:10px 0">
             <button type="submit" class="btn btn-dark" id="input-aceptado" disabled>
               Elegir Materia
@@ -37,8 +38,10 @@
     <script>
         $(document).ready(function () {
             $(document).change(function () {
-                var checkedNum = $('input[id="materia"]:checked').length;
+                var checkedNum = $('input[id="certamen"]:checked').length;
                 if (!checkedNum) {
+                    $('#input-aceptado').attr("disabled", true);
+                } else if ( checkedNum > 1) {
                     $('#input-aceptado').attr("disabled", true);
                 } else {
                     $('#input-aceptado').attr("disabled", false);
