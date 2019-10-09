@@ -9,8 +9,7 @@
     <div class="row justify-content-md-center">
       <div class="card" style="margin:50px 0">
         <div class="card-header">Elegir tópico del material:</div>
-        <form action="." method="post">
-        {% csrf_token %}
+        <form action="." method="get">
           <ul class="list-group list-group-flush">
               {% for materia in materias %}
                 <li class="list-group-item">

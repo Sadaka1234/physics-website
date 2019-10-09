@@ -20,8 +20,7 @@
     <div class="col-md-6">
       <div class="card" style="margin:50px 0">
         <div class="card-header">Elegir subtópico del material:</div>
-        <form action="." method="post">
-          {% csrf_token %}
+        <form action="." method="get">
           <ul class="list-group list-group-flush">
               {% for submateria in submaterias %}
                 <li class="list-group-item">
