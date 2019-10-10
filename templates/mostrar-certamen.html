@@ -30,6 +30,7 @@
     <div class="container">
       {% for pregunta in certamen %}
         <h4>Pregunta {% cycle 1 2 3 4%}</h4>
+          <p hidden> {{ pregunta.nombre }}</p>
             {% include pregunta.ruta %}
       {% endfor %}
     </div>
