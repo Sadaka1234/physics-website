@@ -28,13 +28,12 @@ def material(request):
         id_materia = []
         for i in materias:
           id_materia.append(i)
-        context["preguntas"] = ejercicio.objects.filter(materia__in=id_materia).values("ruta", "materia__subtopico").order_by("materia__topico", "materia__subtopico").distinct()
+        context["preguntas"] = ejercicio.objects.filter(materia__in=id_materia).values("ruta", "materia__subtopico", "nombre").order_by("materia__topico", "materia__subtopico").distinct()
         context["estudios"] = estudio.objects.filter(materia__in=id_materia).all().order_by().distinct()
         context["submateria"] = consulta
         return render(request, 'mostrar-material.html', context)
       else:
         return redirect(material)
-
 
   if request.method == 'POST':
     if "estudio-leido" in request.POST.keys():
@@ -43,6 +42,9 @@ def material(request):
       createUserEstudio(usuario, study)
       return redirect(request.POST["ruta-leido"])
 
+    if "pregunta" in request.POST.keys():
+      context["certamen"] = request.POST["pregunta"]
+      redirect(display_pregunta)
 
   context["materias"] = materia.objects.values("topico").order_by().distinct()
   return render(request, 'eleccion-material.html', context)
@@ -56,6 +58,16 @@ def createUserEstudio(username, estudio):
   except:
     print("Already exists, we go on")
     return False
+
+@login_required(login_url='login_view')
+def display_pregunta(request):
+  print("equisde")
+  if "certamen" in context.keys():
+    print("hola")
+    return render(request, 'mostrar-certamen.html', context)
+  else:
+    print("chao")
+    return redirect(material)
 
 
 
