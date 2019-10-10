@@ -13,8 +13,8 @@ class SignUpForm(UserCreationForm):
 
   def __init__(self, *args, **kwargs):
     super(SignUpForm, self).__init__(*args, **kwargs)
-    self.fields['username'].widget.attrs.update({'placeholder':'Nombre de Usuario', 'size':'35'})
-    self.fields['email'].widget.attrs.update({'placeholder': 'Dirección E-mail', 'size':'35'})
-    self.fields['password1'].widget.attrs.update({'placeholder': 'Contraseña', 'size':'35'})
-    self.fields['password2'].widget.attrs.update({'placeholder': 'Confirmar Contraseña', 'size':'35'})
+    self.fields['username'].widget.attrs.update({'placeholder':'Nombre de Usuario', 'size':'32'})
+    self.fields['email'].widget.attrs.update({'placeholder': 'Dirección E-mail', 'size':'32'})
+    self.fields['password1'].widget.attrs.update({'placeholder': 'Contraseña', 'size':'32'})
+    self.fields['password2'].widget.attrs.update({'placeholder': 'Confirmar Contraseña', 'size':'32'})
 

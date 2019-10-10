@@ -18,7 +18,11 @@ def pregunta(request):
         materias = ejercicio.objects.all().distinct()
       else:
         materias = ejercicio.objects.filter(materia__topico=certamen).all()
-      context['certamen'] = get_pregunta(3, materias)
+      if "cantidad" in request.POST.keys():
+        cantidad = int(request.POST["cantidad"])
+      else:
+        cantidad=3
+      context['certamen'] = get_pregunta(cantidad, materias)
       return redirect(display_certamen)
   context["elecciones"] = [("Certamen 1: ","Oscilaciones, Ondas mecánicas y Sonido"),("Certamen Global: ","Todo")]
   return render(request, 'eleccion-certamen.html', context)
@@ -30,20 +34,23 @@ def get_pregunta(cantidad, preguntas):
 
   while True:
     pk = random.randint(1, max_id)
-    pregunta = preguntas.filter(pk=pk).first()
+    print("-------")
+    print(pk)
+    print(len(output))
+    print("-------")
+    question = preguntas.filter(pk=pk).first()
 
-    if len(output) == cantidad:
+    if len(output) >= cantidad:
       return output
 
-    if pregunta and (pregunta not in output):
-      output.append( pregunta )
+    if question and (question not in output):
+      output.append( question )
 
 
 @login_required(login_url='login_view')
 def display_certamen(request):
   if "certamen" in context.keys():
-    for i in context["certamen"]:
-     return render(request, 'mostrar-certamen.html', context)
+    return render(request, 'mostrar-certamen.html', context)
   else:
     return redirect(pregunta)
 

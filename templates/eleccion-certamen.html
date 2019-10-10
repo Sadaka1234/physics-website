@@ -27,14 +27,26 @@
                 </li>
               {% endfor %}
           </ul>
-          {% csrf_token %}
-          <div class="row justify-content-md-center" style="margin:10px 0">
-            <button type="submit" class="btn btn-dark" id="input-aceptado" disabled>
-              Elegir Materia
-            </button>
-          </div>
+            {% csrf_token %}
+          <div class="container" style="max-width: 100%; margin-top: 20px; margin-bottom: 20px">
+            <div class="row justify-content-center">
+              <select class="mdb-select md-form" id="cantidad" name="cantidad">
+                <option value=" " disabled selected>Número de preguntas</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+            <div class="row justify-content-md-center" style="margin:10px 0">
+              <button type="submit" class="btn btn-dark" id="input-aceptado" disabled>
+                Elegir Materia
+              </button>
+            </div>
+           </div>
         </form>
-      </div>
     </div>
 
     <script>
@@ -43,7 +55,7 @@
                 var checkedNum = $('input[id="certamen"]:checked').length;
                 if (!checkedNum) {
                     $('#input-aceptado').attr("disabled", true);
-                } else if ( checkedNum > 1) {
+                } else if (checkedNum > 1) {
                     $('#input-aceptado').attr("disabled", true);
                 } else {
                     $('#input-aceptado').attr("disabled", false);

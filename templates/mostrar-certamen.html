@@ -26,13 +26,30 @@
 
 {% endblock %}
 {% block contenido %}
-  <div class="card">
-    <div class="container">
+  <div class="card" style="margin: 70px">
+    <div class="container" style="margin-top: 40px;">
       {% for pregunta in certamen %}
-        <h4>Pregunta {% cycle 1 2 3 4%}</h4>
+        <h4>Pregunta {% cycle 1 2 3 4 5 6 %}</h4>
           <p hidden> {{ pregunta.nombre }}</p>
             {% include pregunta.ruta %}
       {% endfor %}
     </div>
   </div>
+  <div class="row justify-content-center" style="margin: 20px">
+    <btn class="btn btn-dark btn-lg" type="button" id="mostrar" name="mostrar">
+        Mostrar solución
+    </btn>
+  </div>
+
+
+
+
+
+  <script>
+        $( "#mostrar" ).click(function() {
+          $('.solucion').attr("hidden", false);
+        });
+    </script>
+
+
 {% endblock %}

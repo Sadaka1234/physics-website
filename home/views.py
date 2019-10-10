@@ -83,8 +83,8 @@ def profile(request):
       for estudio in estudios:
         (context['estudios'][topico]).append((estudio["estudio__nombre"], estudio['estudio__ruta']))
 
-    if context['perfil'] == {}:
-      context['perfil']["No has resuelto preguntas! Es un buen momento para ponerte a estudiar! :D"] = []
-    if context['estudios'] == {}:
-      context['estudios']["No se ha leido nada! Más vale empezar a estudiar ;3"] = []
+  if context['perfil'] == {}:
+    context['perfil']["No has resuelto preguntas! Es un buen momento para ponerte a estudiar! :D"] = []
+  if context['estudios'] == {}:
+    context['estudios']["No se ha leido nada! Más vale empezar a estudiar ;3"] = []
   return render(request, "profile.html", context)
