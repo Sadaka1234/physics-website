@@ -49,18 +49,6 @@
           </ul>
         </div>
     </div>
-    <div class="col-md-6" style="margin:50px 0">
-        <div>
-          <p>Preguntas de certamen encontradas:</p>
-          <ul>
-              {% for pregunta in preguntas %}
-                <li>
-                  <a href="{{ pregunta.ruta }}"> Soy pregunta de subtopico: {{ pregunta.materia__subtopico }}</a>
-                </li>
-              {% endfor %}
-          </ul>
-        </div>
-    </div>
   </div>
   </div>
 
