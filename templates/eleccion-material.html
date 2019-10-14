@@ -18,12 +18,19 @@
                     <input type="checkbox"
                            id="materia"
                            name="materia"
-                           class="{% cycle 'success' 'primary' 'warning' 'default' 'info'  'danger' %}"
+                           class="{% cycle 'success' 'primary' 'warning' 'default' 'info' %}"
                            value="{{ materia.topico }}">
                     <span class="slider round"></span>
                   </label>
                 </li>
               {% endfor %}
+              <li class="list-group-item">
+                Marcar todos
+                <label class="switch">
+                  <input type="checkbox" id="select_all" name="select_all" class="danger">
+                  <span class="slider round"></span>
+                </label>
+              </li>
           </ul>
           <div class="row justify-content-md-center" style="margin:10px 0">
             <button type="submit" class="btn btn-dark" id="input-aceptado" disabled>
@@ -44,6 +51,10 @@
                     $('#input-aceptado').attr("disabled", false);
                 }
             });
+        });
+        $('#select_all').change(function() {
+            var checkboxes = $(this).closest('form').find(':checkbox');
+            checkboxes.prop('checked', $(this).is(':checked'));
         });
     </script>
   </div>
