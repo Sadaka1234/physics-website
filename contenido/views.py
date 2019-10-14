@@ -30,7 +30,7 @@ def material(request):
           id_materia.append(i)
         context["preguntas"] = ejercicio.objects.filter(materia__in=id_materia).values("ruta", "materia__subtopico", "nombre").order_by("materia__topico", "materia__subtopico").distinct()
         context["estudios"] = estudio.objects.filter(materia__in=id_materia).all().order_by().distinct()
-        context["submateria"] = consulta
+        context["submateria"] = materia.objects.order_by("topico", "subtopico").filter(subtopico__in=consulta).order_by("topico", "subtopico").distinct()
         return render(request, 'mostrar-material.html', context)
       else:
         return redirect(material)
