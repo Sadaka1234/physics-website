@@ -12,7 +12,7 @@
       <div class="card-header">Tópicos elegidos:</div>
       <ul class="list-group list-group-flush">
       {% for mate in materiasreales %}
-          {% cycle 'success' 'primary' 'warning' 'default' 'info'  'danger' as rowcolors silent %}
+          {% cycle 'success' 'primary' 'warning' 'default' 'info' as rowcolors silent %}
           {% for mat in materia %}
             {% if mat == mate.topico %}
               <li class="list-group-item text-{{ rowcolors }}">{{ mat }}</li>
