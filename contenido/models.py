@@ -20,6 +20,7 @@ class estudio(models.Model):
 class estudio_usuario(models.Model):
   estudio = models.ForeignKey('contenido.estudio', on_delete=models.CASCADE)
   usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+  fecha = models.DateField(auto_now_add=True, null=True)
 
   class Meta:
     unique_together = (("estudio", "usuario"),)

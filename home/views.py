@@ -72,19 +72,22 @@ def profile(request):
   context['estudios'] = dict()
   for topico in topicos:
     topico = topico['topico']
-    preguntas = ejercicio_usuario.objects.filter(usuario=request.user, ejercicio__materia__topico=topico).values('ejercicio__ruta','resuelto').order_by("ejercicio__nombre").distinct()
-    estudios = estudio_usuario.objects.filter(usuario=request.user, estudio__materia__topico=topico).values("estudio__ruta", "estudio__nombre").order_by("estudio__nombre").distinct()
-    if preguntas:
-      context['perfil'][topico] = []
-      for pregunta in preguntas:
-        (context['perfil'][topico]).append((pregunta['ejercicio__ruta'],pregunta['resuelto']))
+    context['certamenes'] = certamen.objects.filter(usuario=request.user).order_by("fecha")
+    #preguntas = ejercicio_usuario.objects.filter(usuario=request.user, ejercicio__materia__topico=topico).values('ejercicio__ruta','resuelto').order_by("ejercicio__nombre").distinct()
+    estudios = estudio_usuario.objects.filter(usuario=request.user, estudio__materia__topico=topico).values("estudio__ruta", "estudio__nombre", "estudio__estudio_usuario__fecha").order_by("estudio__nombre").distinct()
+    #if preguntas:
+    #  context['perfil'][topico] = []
+    #  for pregunta in preguntas:
+    #    (context['perfil'][topico]).append((pregunta['ejercicio__ruta'],pregunta['resuelto']))
     if estudios:
       context['estudios'][topico] = []
       for estudio in estudios:
-        (context['estudios'][topico]).append((estudio["estudio__nombre"], estudio['estudio__ruta']))
+        (context['estudios'][topico]).append((estudio["estudio__nombre"], estudio['estudio__ruta'], estudio["estudio__estudio_usuario__fecha"]))
+  if context['certamenes'] == {}:
+    context['certamenes']['No se han guardado certamenes. Genera uno y guardalo!'] = []
 
-  if context['perfil'] == {}:
-    context['perfil']["No has resuelto preguntas! Es un buen momento para ponerte a estudiar! :D"] = []
+  #if context['perfil'] == {}:
+  #  context['perfil']["No has resuelto preguntas! Es un buen momento para ponerte a estudiar! :D"] = []
   if context['estudios'] == {}:
     context['estudios']["No se ha leido nada! Más vale empezar a estudiar ;3"] = []
   return render(request, "profile.html", context)

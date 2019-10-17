@@ -24,3 +24,15 @@ class ejercicio_usuario(models.Model):
 
   def __str__(self):
       return u'%s' % self.ejercicio.ruta
+
+class certamen(models.Model):
+  nombre = models.CharField(blank=False, null=False, max_length=255, default="certamen")
+  fecha = models.DateField(blank=False, null=False)
+  usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return u'%s' % self.nombre
+
+class certamen_pregunta(models.Model):
+  certamen = models.ForeignKey('preguntas.certamen', on_delete=models.CASCADE)
+  pregunta = models.ForeignKey('preguntas.ejercicio', on_delete=models.CASCADE)

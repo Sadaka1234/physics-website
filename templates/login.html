@@ -1,62 +1,64 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <head>
-	<title>Physics for dummies</title>
-	<meta charset="utf-8">
+  <title>Physics for dummies</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'background.css' %}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-
-  {% load bootstrap4 %}
-  {% bootstrap_css %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
 </head>
 <body class="body1">
 <div class="container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header">
-				<h3>Inicio de sesión</h3>
-			</div>
-			<div class="card-body" >
-				<form method="post">
-					<div class="input-group form-group" >
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user" style="color: aliceblue"></i></span>
-						</div>
-						<input type="text" class="form-control" placeholder="Usuario" name="username">
-
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key" style="color: aliceblue"></i></span>
-						</div>
-						<input type="password" class="form-control" placeholder="Contraseña" name="password">
-					</div>
-					<div class="row remember">
-            <div class="col"><input type="checkbox">Recordarme</div>
-            <div class="col" align="center"><a style="color: #cbe1ec" href="{% url "signup" %}">
-              <span><i class="fas fa-external-link-square-alt"></i></span>
-              Unirme
-            </a></div>
-					</div>
-          {% csrf_token %}
-          <div class="row">
-					<div class="col" align="center" style="margin-top: 20px">
-						<input type="submit" style="color: aliceblue" value="Login" class="btn btn-lg login_btn">
-					</div>
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3>Inicio de sesión</h3>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user" style="color: aliceblue"></i></span>
             </div>
-				</form>
-        <p style="color: aliceblue"><centering>  {{ error }}  </centering></p>
-			</div>
+            <input type="text" class="form-control" placeholder="Usuario" name="username">
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-key" style="color: aliceblue"></i></span>
+            </div>
+            <input type="password" class="form-control" placeholder="Contraseña" name="password">
+          </div>
+          <div class="row remember">
+            <div class="col"><input type="checkbox">Recordarme</div>
+            <div class="col" align="center">
+              <a style="color: #cbe1ec" href="{% url "signup" %}">
+                <span><i class="fas fa-external-link-square-alt"></i></span>
+                Unirme
+              </a>
+            </div>
+          </div>
+            {% csrf_token %}
+          <div class="row">
+            <div class="col" align="center" style="margin-top: 20px">
+              <input type="submit" style="color: aliceblue" value="Login" class="btn btn-lg login_btn">
+            </div>
+          </div>
+        </form>
+        <p style="color: aliceblue">
+          <centering>  {{ error }}  </centering>
+        </p>
+      </div>
 
-			<div class="card-footer">
+      <div class="card-footer">
         <div class="row align-items-center" style="color: aliceblue">
           <a>Creado por Gonzalito y Jorgito</a>
-          </div>
-			</div>
-		</div>
-	</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>

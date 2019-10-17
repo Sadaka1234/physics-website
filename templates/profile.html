@@ -22,64 +22,61 @@
         <div>
           <hr>
         </div>
-        <div class="row">
-          <div class="col-3 text-left"><h5>Preguntas vistas</h5></div>
+
+
+          <div style="margin:20px">
+            <div class="row">
+              <div class="col-3 text-left"><h5>Certamenes guardados</h5></div>
+            </div>
+            <div class="card" style=" background: #f6faf8">
+            <ul class="list-group list-group-flush" style="margin-left: 20px;margin-right: 20px;">
+                {% for certamen in certamenes %}
+                  <li class="list-group-item " style="background-color: #f6faf8">
+                    <div class="row">
+                      <div class="col-sm-2"></div>
+                      <div class="col text-left">
+                        {{ certamen.nombre }}
+                      </div>
+                      <div class="col text-right">
+                        <b>{{ certamen.fecha }}</b>
+                      </div>
+                    </div>
+                  </li>
+                {% endfor %}
+            </ul>
+            </div>
+            <div>
+
+              <hr>
+            </div>
+            <div class="row">
+              <div class="col-3 text-left"><h5>Lecturas revisadas</h5></div>
+            </div>
+            <ul class="list-group">
+                {% for topico, preguntas in estudios.items %}
+                  <li class="list-group-item" style="background-color: #f6faf8">
+                    <div class="row justify-content-left">
+                      <div class="col-sm-1"></div>
+                      <div class="col text-left"><b>  {{ topico }}</b></div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for pregunta in preguntas %}
+                          <li class="list-group-item" style="background-color: #f6faf8">
+                            <div class="row">
+                              <div class="col-sm-2"></div>
+                              <div class="col text-left"><a target="_blank"
+                                                            href={% static pregunta.1 %}> {{ pregunta.0 }}</a></div>
+                              <div class="col text-right"><b> {{ pregunta.2 }}</b></div>
+                            </div>
+                          </li>
+                        {% endfor %}
+                    </ul>
+                  </li>
+                {% endfor %}
+            </ul>
+          </div>
         </div>
-        <ul class="list-group">
-            {% for topico, preguntas in perfil.items %}
-              <li class="list-group-item" style="background-color: #f6faf8">
-                <div class="row justify-content-left">
-                  <div class="col-sm-1"></div>
-                  <div class="col text-left"><b>  {{ topico }}</b></div>
-                </div>
-                <ul class="list-group list-group-flush">
-                    {% for pregunta in preguntas %}
-                      <li class="list-group-item" style="background-color: #f6faf8">
-                        <div class="row">
-                          <div class="col-sm-2"></div>
-                          <div class="col text-left"><a target="_blank" href={% static pregunta.0 %}> {{ pregunta.0 }}</a></div>
-                          <div class="col text-right">
-                              {% if pregunta.1 %}
-                                <a style="color: green">Resuelta</a>
-                              {% else %}
-                                <a style="color: red">No resuelta</a>
-                              {% endif %}
-                          </div>
-                        </div>
-                      </li>
-                    {% endfor %}
-                </ul>
-              </li>
-            {% endfor %}
-        </ul>
-        <div>
-          <hr>
-        </div>
-        <div class="row">
-          <div class="col-3 text-left"><h5>Lecturas revisadas</h5></div>
-        </div>
-        <ul class="list-group">
-            {% for topico, preguntas in estudios.items %}
-              <li class="list-group-item" style="background-color: #f6faf8">
-                <div class="row justify-content-left">
-                  <div class="col-sm-1"></div>
-                  <div class="col text-left"><b>  {{ topico }}</b></div>
-                </div>
-                <ul class="list-group list-group-flush">
-                    {% for pregunta in preguntas %}
-                      <li class="list-group-item" style="background-color: #f6faf8">
-                        <div class="row">
-                          <div class="col-sm-2"></div>
-                          <div class="col text-left"><a target="_blank" href={% static pregunta.1 %}> {{ pregunta.0 }}</a></div>
-                        </div>
-                      </li>
-                    {% endfor %}
-                </ul>
-              </li>
-            {% endfor %}
-        </ul>
       </div>
     </div>
-  </div>
 
 {% endblock %}
