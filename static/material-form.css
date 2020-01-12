@@ -10,6 +10,18 @@
 /* Hide default HTML checkbox */
 .switch input {display:none;}
 
+.btn-link {
+    border: none !important;
+    outline: none !important;
+    background: none;
+    cursor: pointer;
+    color: #0000EE;
+    padding: 0;
+    text-decoration: underline;
+    font-family: inherit;
+    font-size: inherit;
+}
+
 /* The slider */
 .slider {
   position: absolute;

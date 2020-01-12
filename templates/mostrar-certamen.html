@@ -1,0 +1,55 @@
+{%  extends 'base.html' %}
+{% load staticfiles %}
+{% block latex-scripts %}
+
+    <script>
+
+        MathJax.Hub.Config({
+          showMathMenu: false,
+          extensions: ["tex2jax.js"],
+          jax: ["input/TeX", "output/HTML-CSS"],
+          tex2jax: {
+              skipTags: ["body"],
+              processClass: "Ejercicio"
+          }
+        });
+        MathJax = {
+            tex: {
+              tags: 'ams'  // should be 'ams', 'none', or 'all'
+            }
+        };
+
+    </script>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+{% endblock %}
+{% block contenido %}
+  <div class="card" style="margin: 70px">
+    <div class="container" style="margin-top: 40px;">
+      {% for pregunta in certamen %}
+        <h4>Pregunta {% cycle 1 2 3 4 5 6 %}</h4>
+          <p hidden> {{ pregunta.nombre }}</p>
+            {% include pregunta.ruta %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="row justify-content-center" style="margin: 20px">
+    <btn class="btn btn-dark btn-lg" type="button" id="mostrar" name="mostrar">
+        Mostrar solución
+    </btn>
+  </div>
+
+
+
+
+
+  <script>
+        $( "#mostrar" ).click(function() {
+          $('.solucion').attr("hidden", false);
+        });
+    </script>
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+ <div class = 'Ejercicio' >
+ 
+<div class='enunciado'><div id='mainmini'>
+<div style='position:relative;width:60%'>
+
+ La masa \(m\) se encuentra suspendida verticalmente de un resorte de constante elástica \(k\). El sistema se pone a oscilar de modo que se registra una fuerza de roce \(f\) proporcional a la velocidad \(v\) dada por la expresión: \(f=\sqrt{k m} \ v\).
+
+</div>
+%<div style='position:relative;width:5%'></div>
+<div style='position:relative;width:40%'>
+<img src='1.svg' class='center'>
+</div>
+</div>
+
+<ol type='a'>
+<li> Deduzca la ecuación diferencial que describe el movimiento oscilatorio de la masa \(m\).
+
+
+</li><li> Compare el período de las oscilaciones amortiguadas con el período que se tendría si el roce fuera despreciable. Determinar la razón entre ambos períodos.
+
+
+</li><li> Determine la amplitud de las oscilaciones que se conseguirían si se incorpora al sistema una fuerza vertical \(F\) sobre \(m\) dada por: \(F=mg \sin \left( \sqrt{\frac{k}{m}} \ t \right)\)
+</li></ol>
+
+</div><div class='solucion'>
+
+<ol type='a'>
+<li>
+\begin{eqnarray*}
+\sum \vec{F} &=& m \vec{a} \\
+m \ddot{y} &=& -ky - \sqrt{km} \dot{y} + F_{\text{ext}}
+\end{eqnarray*}
+\begin{equation*}\ddot{y} + \sqrt{\dfrac{k}{m}}\ \dot{y} + \dfrac{k}{m}y = \dfrac{F_{\text{ext}}}{m}\end{equation*}
+
+</li><li>
+\begin{equation*}\omega_0^2 = \dfrac{k}{m} \Longrightarrow T_0 = 2 \pi \sqrt{\dfrac{m}{k}}\end{equation*}
+\begin{equation*}\omega_a^2 = \sqrt{\omega_0^2 - \dfrac{b^2}{4m^2}} \text{ , donde } b=\sqrt{km}\end{equation*}
+\begin{equation*}\omega_a^2 = \sqrt{\dfrac{k}{m} - \dfrac{km}{4m^2}} \Longrightarrow T_a = 2 \pi \sqrt{\dfrac{4m}{3k}}\end{equation*}
+\begin{equation*}\dfrac{T_a}{T_0} = \dfrac{2 \pi \sqrt{\dfrac{4m}{3k}}}{2 \pi \sqrt{\dfrac{m}{k}}} \Longrightarrow \dfrac{T_a}{T_0} = \sqrt{\dfrac{4}{3}}\end{equation*}
+
+</li><li>
+\begin{equation*}\ddot{y} + \sqrt{\dfrac{k}{m}}\ \dot{y} + \dfrac{k}{m}y = g \sin \left( \sqrt{\frac{k}{m}} \ t \right)\end{equation*}
+\begin{eqnarray*}
+A_2 &=& \dfrac{F_0}{m} \dfrac{1}{\sqrt{\left( \omega_0^2 - \omega^2\right)^2 + \left( \frac{b}{m} \right)^2 \omega^2 }} \\
+&=& \dfrac{g}{\sqrt{\left( \frac{k}{m} - \frac{3k}{4m} \right)^2 + \frac{k}{m} \frac{3k}{4m} }} \\
+A_2 &=& \dfrac{4}{\sqrt{13}} \dfrac{mg}{k}
+\end{eqnarray*}
+</li></ol>
+</div> 
+
+</div>

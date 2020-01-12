@@ -4,54 +4,70 @@
   <link rel="stylesheet" type="text/css" href="{% static 'material-form.css' %}">
 {% endblock %}
 
+
 {% block contenido %}
   <div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="card" style="margin:50px 0">
-      <div class="card-header">Tópicos elegidos:</div>
-      <ul class="list-group list-group-flush">
-          {% for mat in materia %}
-            <li class="list-group-item">{{ mat }}</li>
-          {% endfor %}
-      </ul>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card" style="margin:50px 0">
-        <div class="card-header">Subtópicos elegidos:</div>
+    <div class="row">
+      <div class="col-md-3" style="margin:50px 0">
+        <div class="card">
+          <div class="card-header">Tópicos elegidos:</div>
           <ul class="list-group list-group-flush">
-              {% for submat in submateria %}
-                <li class="list-group-item">
-                    {{ submat }}
-                </li>
+              {% for mate in materiasreales %}
+                  {% cycle 'success' 'primary' 'warning' 'default' 'info' as rowcolors silent %}
+                  {% for mat in materia %}
+                      {% if mat == mate.topico %}
+                        <li class="list-group-item text-{{ rowcolors }}">{{ mat }}</li>
+                      {% endif %}
+                  {% endfor %}
               {% endfor %}
           </ul>
+        </div>
+      </div>
+        <div class="col-md-3" style="margin:50px 0">
+        <div class="card">
+          <div class="card-header">Subtópicos elegidos:</div>
+          <ul class="list-group list-group-flush">
+              {% for mate in materiasreales %}
+                  {% cycle 'success' 'primary' 'warning' 'default' 'info' as rowcolors silent %}
+                  {% for mat in submateria %}
+                      {% if mat.topico == mate.topico %}
+                        <li class="list-group-item text-{{ rowcolors }}">{{ mat.subtopico }}</li>
+                      {% endif %}
+                  {% endfor %}
+              {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" style="margin:50px 0">
+        <div class="card">
+          <div style="margin: 20px">
+            <p>Libros y lecturas encontradas:</p>
+            <ul>
+                {% for mate in materia %}
+                  <li> {{ mate }}</li>
+                  <ul>
+                      {% for estudio in estudios %}
+                          {% if mate == estudio.materia.topico %}
+                            <li>
+                              <form target="_blank" method="POST">
+                                  {% csrf_token %}
+                                <input type="hidden" id="estudio-leido" name="estudio-leido" value={{ estudio.id }}>
+                                <input type="hidden" id="ruta-leido" name="ruta-leido"
+                                       value="{% static estudio.ruta %}">
+                                <button type="submit" name="estudio-usuario" value="estudio-usuario" class="btn-link"
+                                        style="border: none;">{{ estudio.nombre }}</button>
+                              </form>
+                            </li>
+                          {% endif %}
+                      {% endfor %}
+                  </ul>
+                {% endfor %}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6" style="margin:50px 0">
-        <div>
-          <p>Material de estudio encontrado:</p>
-          <ul>
-              {% for pregunta in preguntas %}
-                <li><a href="{{ pregunta.ruta }}">Soy material de subtopico: {{ pregunta.materia__subtopico }}</a></li>
-              {% endfor %}
-          </ul>
-        </div>
-    </div>
-    <div class="col-md-6" style="margin:50px 0">
-        <div>
-          <p>Preguntas de certamen encontradas:</p>
-          <ul>
-              {% for pregunta in preguntas %}
-                <li><a href="{{ pregunta.ruta }}"> Soy pregunta de subtopico: {{ pregunta.materia__subtopico }} </a></li>
-              {% endfor %}
-          </ul>
-        </div>
-    </div>
-  </div>
+
   </div>
 
 {% endblock %}

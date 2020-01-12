@@ -1,0 +1,83 @@
+{% load staticfiles %}
+{% verbatim %} 
+<div class = 'Ejercicio' >
+ 
+<div class='enunciado'><div id='mainmini'>
+<div style='position:relative;width:60%'>
+
+ Una barra uniforme de masa \(m\) y largo \(L\) se encuentra unida en su extremo a un resorte de constante elástica \(k\). Esta barra está pivoteada a \(3L/10\) de uno de sus extremos como se muestra en la figura. Considere que la barra se desplaza un ángulo pequeño \(\theta\) con respecto a la vertical. Recuerde que el momento de inercia de una barra de largo \(L\) y masa \(M\) respecto al centro de masa es \(\frac{1}{12}ML^2\).
+<ol type='a'>
+<li> Determine la ecuación de movimiento del sistema y su frecuencia natural.
+</li><li> Si el sistema se ve sometido a una fuerza armónica externa \(F(t)=F_0 \cos(\Omega t)\) y a una fuerza de roce proporcional a la velocidad del centro de masa, con una constante de proporcionalidad \(b\), ambas fuerzas aplicadas en el centro de masa de la barra. Determine la frecuencia de resonancia \(\Omega_R\).
+</li><li> Determine la potencia disipada debida a la fuerza de roce del estado estacionario y la potencia promedio \(\bar{P}\) en un período de tiempo.
+</li></ol>
+
+\begin{equation*}\bar{P} = \dfrac{1}{T} \int_0^TP(t)dt\end{equation*}
+
+</div>
+<div style='position:relative;width:40%'>
+
+
+
+{% endverbatim %}<img src='{% static 'Preguntas/oscilaciones03/1.svg' %}' class='center'>{% verbatim %}
+
+
+</div>
+</div>
+
+</div><div class='solucion' hidden>
+
+<ol type='a'>
+
+</li><li> <b>DCL</b>
+<div id='mainmini'>
+<div style='position:relative;width:30%'>
+<p>{% endverbatim %}<img src='{% static 'Preguntas/oscilaciones03/2.svg' %}' class='center'>{% verbatim %}
+</div>
+<div style='position:relative;width:5%'></div>
+<div style='position:relative;width:55%'>
+\begin{align*}a=\frac{3L}{10} \, , \, d=\frac{L}{5} \, ,\, c=\frac{7L}{10}\\\circlearrowleft\Sigma\tau_0=-Wd\sin\theta -F_kc\cos\theta=I_0\ddot\theta\end{align*}
+donde \(W=mg\), \(F_k=kc\sin\theta\), suponiendo que \(\theta\) mide desde la posición de equilibrio.
+</div>
+</div>
+
+
+Por otro lado:
+\begin{equation*}I_0=I_{cm}+md^2=\frac{1}{12}mL^2+m\frac{L^2}{25}=\frac{37}{300}mL^2\end{equation*}
+entonces, con \(\theta\approx\sin\theta\) para \(\theta\approx0\)
+\begin{align*}-mgd\theta-Kc^2\theta=I_0\ddot\theta&\Rightarrow\ddot\theta+\left(\frac{mgd}{I_0}+\frac{Kc^2}{I_0}\right)\theta\\\end{align*}
+$$\bbox[yellow,10px, border: 2px solid red]{\begin{equation*}\Rightarrow\ddot\theta+\left(\frac{60}{37}\cdot\frac{g}{L}+\frac{147}{37}\cdot\frac{K}{m}\right)\theta=0\end{equation*}}$$
+$$\bbox[yellow,10px, border: 2px solid red]{\begin{equation*}\wedge  \omega_n=\sqrt{\frac{60}{37}\cdot\frac{g}{L}+\frac{147}{37}\cdot\frac{K}{m}}\end{equation*}}$$
+
+</li><li> <b>DCL</b>
+<div id='mainmini'>
+<div style='position:relative;width:30%'>
+<p>{% endverbatim %}<img src='{% static 'Preguntas/oscilaciones03/3.svg' %}' class='center'>{% verbatim %}
+</div>
+<div style='position:relative;width:5%'></div>
+<div style='position:relative;width:55%'>
+\begin{equation*}\circlearrowleft\Sigma\tau_0=-Wd\sin\theta-F_xc\cos\theta-f_rd+F_ed=I_0\ddot\theta\end{equation*}
+con \(f_r=bd\dot\theta\wedge F_e=F_0\cos(\Omega t)\)
+\begin{equation*}\Rightarrow \ddot\theta+\frac{bd^2}{I_0}\dot\theta+\left(\frac{mgd}{I_0}+\frac{Kc^2}{I_0}\right)\theta=\frac{F_0d}{I_0}\cos(\Omega t)\end{equation*}
+</div>
+</div>
+
+De la ecuación de movimiento se desprende: \(\gamma=\frac{bd^2}{2I_0}\), además la amplitud estacionaria del movimiento es:
+\begin{align*}&Ae=\frac{\frac{F_0d}{I_0}}{\sqrt{{\left({\omega_n}^2-\Omega^2\right)}^2-4\gamma^2\Omega^2}}=\frac{F_0d}{I_0}{\left[{\left({\omega_n}^2-\Omega^2\right)}^2-4\gamma^2\Omega^2\right]}^{-\frac{1}{2}}\\\Rightarrow &\frac{dAe}{d\Omega}=-\frac{F_0d}{2I_0}f^{-\frac{3}{2}}\cdot \left[2\left({\omega_n}^2-\Omega^2\right)(-2\Omega)-8\gamma^2\Omega\right]=0\\&\therefore \Omega=0\quad \vee\quad {\omega_n}^2-\Omega^2-2\gamma^2=0 \Rightarrow \Omega_{\text{r}}=\sqrt{{\omega_n}^2+2\gamma^2}\\&\text{con}\quad{\omega_n}^2=\frac{60g}{37L}+\frac{147K}{37m}\quad\wedge\quad\gamma^2=\frac{b^2d^4}{2I_0}=\frac{12b^2L^2}{925}\\\Rightarrow &\Omega_{\text{R}}=\sqrt{\frac{60g}{37L}+\frac{147K}{37m}+\frac{6b^2L^2}{925}}\end{align*}
+
+</li><li>
+
+
+
+Luego la potencia disipadora de la fuerza de roce corresponde a:
+\begin{align*}P(t)&=-F_r\cdot v_{\text{cm}}\\&=-b\cdot{v_{\text{cm}}}^2\\&=-b\cdot{\left(\frac{L}{5}\cdot\theta_{\text{st}}\right)}^2\\&=-b\cdot{\left(\frac{L}{5}\cdot-A\Omega\sin(\Omega t+\phi)\right)}^2\\\end{align*}
+$$\bbox[yellow,10px, border: 2px solid red]{\begin{equation*}P(t)=\frac{-bL^2A_e^2\Omega^2}{25}\sin^2(\Omega t+\phi)\end{equation*}}$$
+
+Entonces:
+\begin{align*}\overline{P}&=\frac{1}{T}\int_0^TP(t)dt\\&=\frac{bL^2A_e^2\Omega^2}{25T}\int_0^T\sin^2(\Omega t+\phi)dt\\&=\frac{bL^2A_e^2\Omega^2}{25T}\int_0^T\frac{1-\cos(2\Omega t+2\phi)}{2}\\&=\frac{bL^2A_e^2\Omega^2}{50T}\left[T+\frac{\sin(2\Omega T+2\phi)}{2\Omega}-\frac{\sin(2\phi)}{2\Omega}\right]\\\end{align*}
+$$\bbox[yellow,10px, border: 2px solid red]{\begin{equation*}\overline{P}=\frac{bL^2A_e^2\Omega^2}{100T}\left[2\Omega T+\sin(2\Omega T+2\phi) -\sin(2\phi)\right]\end{equation*}}$$
+</li></ol>
+</div> 
+
+</div>
+{% endverbatim %} 

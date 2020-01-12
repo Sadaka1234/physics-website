@@ -11,8 +11,13 @@
     <div class="card">
       <div class="card-header">Tópicos elegidos:</div>
       <ul class="list-group list-group-flush">
+      {% for mate in materiasreales %}
+          {% cycle 'success' 'primary' 'warning' 'default' 'info' as rowcolors silent %}
           {% for mat in materia %}
-            <li class="list-group-item">{{ mat }}</li>
+            {% if mat == mate.topico %}
+              <li class="list-group-item text-{{ rowcolors }}">{{ mat }}</li>
+            {% endif %}
+          {% endfor %}
           {% endfor %}
       </ul>
     </div>
@@ -20,24 +25,36 @@
     <div class="col-md-6">
       <div class="card" style="margin:50px 0">
         <div class="card-header">Elegir subtópico del material:</div>
-        <form action="." method="post">
+        <form action="." method="get">
           <ul class="list-group list-group-flush">
+            {% for materia in materias %}
+              {% cycle 'success' 'primary' 'warning' 'default' 'info' as rowcolors silent %}
               {% for submateria in submaterias %}
+                {% if materia.topico == submateria.topico %}
                 <li class="list-group-item">
                     {{ submateria.subtopico }}
                   <label class="switch ">
                     <input type="checkbox"
                            id="submateria"
                            name="submateria"
-                           class="{% cycle 'success' 'primary' 'warning' 'default' 'info'  'danger' %}"
+                           class="{{ rowcolors }}"
                            value="{{ submateria.subtopico }}">
                     <span class="slider round"></span>
                   </label>
                 </li>
+                {% endif %}
+                {% endfor %}
               {% endfor %}
+            <li class="list-group-item">
+                Marcar todos
+                <label class="switch">
+                  <input type="checkbox" id="select_all" name="select_all" class="danger">
+                  <span class="slider round"></span>
+                </label>
+              </li>
           </ul>
-          <div class="row justify-content-md-center" style="margin:10px 0">{% csrf_token %}
-            <button type="submit" class="btn btn-dark" style="background-color: #13112c" id="input-aceptado" disabled>
+          <div class="row justify-content-md-center" style="margin:10px 0">
+            <button type="submit" class="btn btn-dark" id="input-aceptado" disabled>
               Elegir Subtópicos
             </button>
           </div>
@@ -55,6 +72,10 @@
                     $('#input-aceptado').attr("disabled", false);
                 }
             });
+        });
+        $('#select_all').change(function() {
+            var checkboxes = $(this).closest('form').find(':checkbox');
+            checkboxes.prop('checked', $(this).is(':checked'));
         });
     </script>
   </div>

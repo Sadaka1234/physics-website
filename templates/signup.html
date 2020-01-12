@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<head>
+  <title>Physics for dummies</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'background.css' %}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+</head>
+<body class="body1">
+<div class="container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3>Creación de cuenta</h3>
+      </div>
+      <div class="card-body">
+        <form method="post" style="text-align: center;">
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="{% cycle "fas fa-user" "fas fa-envelope" "fas fa-key" "fas fa-key" %}" style="color: aliceblue"></i></span>
+                    {{ field }}
+                </div>
+                  {% for error in field.errors %}
+                     <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+              </div>
+            {% endfor %}
+          <div class="form-group">
+            <input type="submit" style="color: aliceblue; font-size: 13px; " value="Registrarse" class="btn btn-lg login_btn">
+          </div>
+          <div class="col" align="center"><a style="color: #cbe1ec" href="{% url "login_view" %}">
+              <span><i class="fas fa-arrow-left"></i></span>
+              Volver
+            </a></div>
+					</div>
+          <p style="color: red">{{ error }}</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

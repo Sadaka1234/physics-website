@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block estilos %}
+  <link rel="stylesheet" type="text/css" href="{% static 'material-form.css' %}">
+{% endblock %}
+
+
+{% block contenido %}
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="card" style="margin:50px 0">
+        <div class="card-header">Elegir certamen:</div>
+        <form action="." method="post">
+          <ul class="list-group list-group-flush">
+              {% for certamen in elecciones %}
+                <li class="list-group-item">
+                    {{ certamen.0 }}{{ certamen.1 }}
+                  <label class="switch">
+                    <input type="checkbox"
+                           id="certamen"
+                           name="certamen"
+                           class="{% cycle 'success' 'primary' 'warning' 'default' 'info'  'danger' %}"
+                           value="{{ certamen.1 }}">
+                    <span class="slider round"></span>
+                  </label>
+                </li>
+              {% endfor %}
+          </ul>
+            {% csrf_token %}
+          <div class="container" style="max-width: 100%; margin-top: 20px; margin-bottom: 20px">
+            <div class="row justify-content-center">
+              <select class="mdb-select md-form" id="cantidad" name="cantidad">
+                <option value=" " disabled selected>Número de preguntas</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+            <div class="row justify-content-md-center" style="margin:10px 0">
+              <button type="submit" class="btn btn-dark" id="input-aceptado" disabled>
+                Elegir Materia
+              </button>
+            </div>
+           </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $(document).change(function () {
+                var checkedNum = $('input[id="certamen"]:checked').length;
+                if (!checkedNum) {
+                    $('#input-aceptado').attr("disabled", true);
+                } else if (checkedNum > 1) {
+                    $('#input-aceptado').attr("disabled", true);
+                } else {
+                    $('#input-aceptado').attr("disabled", false);
+                }
+            });
+        });
+    </script>
+  </div>
+
+{% endblock %}

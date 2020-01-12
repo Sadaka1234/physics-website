@@ -8,6 +8,7 @@ class ejercicio(models.Model):
   materia = models.ForeignKey('contenido.materia', on_delete=models.CASCADE)
   semestre = models.IntegerField(blank=True, null=False)
   anio = models.IntegerField(blank=True, null=False)
+  nombre = models.CharField(blank=False, null=False, max_length=255)
 
   def __str__(self):
     return u'%s' % self.ruta
@@ -22,7 +23,16 @@ class ejercicio_usuario(models.Model):
     unique_together = (("ejercicio", "usuario"),)
 
   def __str__(self):
-    if self.resuelto == True:
-      return u'%s' % self.usuario + " -> " + self.ejercicio.ruta + " RESUELTO"
-    else:
-      return u'%s' % self.usuario + " -> " + self.ejercicio.ruta + " NO-RESUELTO"
+      return u'%s' % self.ejercicio.ruta
+
+class certamen(models.Model):
+  nombre = models.CharField(blank=False, null=False, max_length=255, default="certamen")
+  fecha = models.DateField(blank=False, null=False)
+  usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return u'%s' % self.nombre
+
+class certamen_pregunta(models.Model):
+  certamen = models.ForeignKey('preguntas.certamen', on_delete=models.CASCADE)
+  pregunta = models.ForeignKey('preguntas.ejercicio', on_delete=models.CASCADE)
